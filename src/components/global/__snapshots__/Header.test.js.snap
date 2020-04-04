@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Header component 1`] = `
+<header>
+  <h1>
+    Space Soldier Armory
+  </h1>
+</header>
+`;

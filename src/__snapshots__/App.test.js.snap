@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders App component 1`] = `
+<div
+  className="App"
+>
+  <header>
+    <h1>
+      Space Soldier Armory
+    </h1>
+  </header>
+</div>
+`;
