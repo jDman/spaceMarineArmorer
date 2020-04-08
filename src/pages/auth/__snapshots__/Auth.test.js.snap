@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Auth component and children 1`] = `
+<section
+  className="auth-form"
+>
+  <p>
+    Tested
+  </p>
+</section>
+`;

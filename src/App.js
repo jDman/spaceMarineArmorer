@@ -9,7 +9,9 @@ import {
 import './App.css';
 import Header from './components/global/Header';
 import Nav from './components/global/Nav';
-import ArmorAdmin from './pages/ArmorAdmin';
+import ArmorAdmin from './pages/admin/ArmorAdmin';
+import Signup from './pages/auth/Signup';
+import Login from './pages/auth/Login';
 
 function App() {
   return (
@@ -22,6 +24,14 @@ function App() {
         <Switch>
           <Route path="/admin">
             <ArmorAdmin />
+          </Route>
+
+          <Route path="/signup">
+            <Signup />
+          </Route>
+
+          <Route path="/login">
+            <Login />
           </Route>
 
           <Route path="/">
