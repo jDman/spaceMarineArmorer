@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Nav component 1`] = `
+<nav>
+  <ul>
+    <li>
+      <a
+        aria-current="page"
+        className="active"
+        href="/"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Home
+      </a>
+    </li>
+    <li>
+      <a
+        aria-current={null}
+        href="/admin"
+        onClick={[Function]}
+      >
+        Admin
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

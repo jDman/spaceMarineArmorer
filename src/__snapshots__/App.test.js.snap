@@ -1,13 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders App component 1`] = `
-<div
-  className="App"
->
-  <header>
-    <h1>
-      Space Soldier Armory
-    </h1>
-  </header>
-</div>
+Array [
+  <div
+    className="App"
+  >
+    <header>
+      <h1>
+        Space Soldier Armory
+      </h1>
+    </header>
+    <nav>
+      <ul>
+        <li>
+          <a
+            aria-current="page"
+            className="active"
+            href="/"
+            onClick={[Function]}
+            style={Object {}}
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            aria-current={null}
+            href="/admin"
+            onClick={[Function]}
+          >
+            Admin
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>,
+  <p>
+    Home
+  </p>,
+]
 `;

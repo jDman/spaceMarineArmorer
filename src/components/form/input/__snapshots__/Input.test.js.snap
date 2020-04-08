@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Input component 1`] = `
+<div
+  className="Input"
+>
+  <label
+    className="Label"
+  />
+  <input
+    className="InputElement"
+  />
+</div>
+`;
+
+exports[`renders Input component with props passed in for elementType input number 1`] = `
+<div
+  className="Input"
+>
+  <label
+    className="Label"
+  />
+  <input
+    className="InputElement"
+    max={10000}
+    min={0}
+    name="testNumber"
+    required={true}
+    step={100}
+    type="number"
+    value={0}
+  />
+</div>
+`;
+
+exports[`renders Input component with props passed in for elementType input text 1`] = `
+<div
+  className="Input"
+>
+  <label
+    className="Label"
+  />
+  <input
+    className="InputElement"
+    name="testText"
+    placeholder="This test is..."
+    required={true}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`renders Input component with props passed in for elementType select 1`] = `
+<div
+  className="Input"
+>
+  <label
+    className="Label"
+  />
+  <select
+    className="InputElement"
+    name="testSelect"
+    required={true}
+    type="select"
+    value=""
+  >
+    <option
+      value="test1"
+    >
+      Test 1
+    </option>
+    <option
+      value="test2"
+    >
+      Test 2
+    </option>
+    <option
+      value="test3"
+    >
+      Test 3
+    </option>
+  </select>
+</div>
+`;
+
+exports[`renders Input component with props passed in for elementType textarea 1`] = `
+<div
+  className="Input"
+>
+  <label
+    className="Label"
+  />
+  <textarea
+    className="InputElement"
+    maxLength={2000}
+    minLength={5}
+    name="testTextarea"
+    placeholder="This test is..."
+    required={true}
+    value=""
+  />
+</div>
+`;
