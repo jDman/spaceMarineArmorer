@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import axios from 'axios';
 import { withRouter, useHistory } from 'react-router-dom';
@@ -14,6 +14,7 @@ function App() {
   let history = useHistory();
 
   const [isAuth, setAuth] = useState(false);
+  const [generatedToken, setGeneratedToken] = useState(null);
 
   const loginHandler = (event, { loading, loginFormIsValid, loginForm }) => {
     event.preventDefault();
@@ -25,16 +26,18 @@ function App() {
       })
       .then(result => {
         const remainingMilliseconds = 60 * 60 * 1000;
+        const token = result.data.token;
 
         const expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
         );
 
         sessionStorage.setItem('expiryDate', expiryDate.toISOString());
-        sessionStorage.setItem('token', result.data.token);
+        sessionStorage.setItem('token', token);
         sessionStorage.setItem('userId', result.data.userId);
 
         setAuth(true);
+        setGeneratedToken(token);
 
         history.replace('/');
       })
@@ -43,15 +46,16 @@ function App() {
       });
   };
 
-  const logoutHandler = () => {
+  const logoutHandler = useCallback(() => {
     setAuth(false);
+    setGeneratedToken(null);
 
     sessionStorage.removeItem('expiryDate');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('userId');
 
     history.replace('/login');
-  };
+  }, [history]);
 
   const signupHandler = (event, { loading, signupFormIsValid, signupForm }) => {
     event.preventDefault();
@@ -69,6 +73,20 @@ function App() {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    const expiryDate = sessionStorage.getItem('expiryDate');
+    const expired = new Date(expiryDate) <= new Date();
+
+    if (expired) {
+      logoutHandler();
+      return;
+    }
+
+    setAuth(true);
+    setGeneratedToken(token);
+  }, [logoutHandler]);
 
   return (
     <Fragment>
