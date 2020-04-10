@@ -39,11 +39,64 @@ exports[`<Login /> renders Login page 1`] = `
         value=""
       />
     </div>
+    <button
+      type="submit"
+    >
+      Login
+    </button>
   </form>
 </section>
 `;
 
-exports[`renders Login page 1`] = `
+exports[`<Login /> updates email form state on input change 1`] = `
+<section
+  className="auth-form"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="email"
+        onChange={[Function]}
+        placeholder="you@email.com"
+        required={true}
+        type="email"
+        value="test@test.com"
+      />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter you password..."
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</section>
+`;
+
+exports[`<Login /> updates password form state on input change 1`] = `
 <section
   className="auth-form"
 >
@@ -79,9 +132,14 @@ exports[`renders Login page 1`] = `
         placeholder="Enter you password..."
         required={true}
         type="password"
-        value=""
+        value="12345678"
       />
     </div>
+    <button
+      type="submit"
+    >
+      Login
+    </button>
   </form>
 </section>
 `;

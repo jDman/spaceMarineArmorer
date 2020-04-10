@@ -1,15 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { MemoryRouter as Router } from 'react-router-dom';
 import ArmorAdmin from './ArmorAdmin';
 
 describe('<ArmorAdmin />', () => {
   it('renders ArmorAdmin page component', () => {
-    const component = renderer.create(
-      <Router>
-        <ArmorAdmin />
-      </Router>
-    );
+    const component = renderer.create(<ArmorAdmin />);
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });

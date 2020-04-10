@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { render } from '@testing-library/react';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import Input from '../../components/form/input/Input';
@@ -294,4 +293,4 @@ class ArmorAdmin extends Component {
   }
 }
 
-export default withRouter(ArmorAdmin);
+export default ArmorAdmin;

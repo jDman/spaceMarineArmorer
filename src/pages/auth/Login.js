@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import Auth from './Auth';
 import Input from '../../components/form/input/Input';
@@ -75,8 +74,24 @@ class Login extends Component {
     });
   }
 
-  login(event) {
-    event.preventDefault();
+  checkValidity(value, rules) {
+    let isValid = true;
+
+    const trimedValue = value.trim();
+
+    if (rules.required) {
+      isValid = trimedValue !== '' && trimedValue !== '0' && isValid;
+    }
+
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+
+    return isValid;
   }
 
   render() {
@@ -92,7 +107,7 @@ class Login extends Component {
 
     return (
       <Auth>
-        <form onSubmit={event => this.login(event)}>
+        <form onSubmit={event => this.props.login(event, this.state)}>
           {loginFormElements.map(formElement => {
             return (
               <Input
@@ -109,10 +124,12 @@ class Login extends Component {
               />
             );
           })}
+
+          <button type="submit">Login</button>
         </form>
       </Auth>
     );
   }
 }
 
-export default withRouter(Login);
+export default Login;

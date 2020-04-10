@@ -55,11 +55,80 @@ exports[`<Signup /> renders Signup page 1`] = `
         value=""
       />
     </div>
+    <button
+      type="submit"
+    >
+      Signup
+    </button>
   </form>
 </section>
 `;
 
-exports[`renders Signup page 1`] = `
+exports[`<Signup /> updates email form state on input change 1`] = `
+<section
+  className="auth-form"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="userName"
+        onChange={[Function]}
+        placeholder="Your username here..."
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="email"
+        onChange={[Function]}
+        placeholder="you@email.com"
+        required={true}
+        type="email"
+        value="test@test.com"
+      />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter you password..."
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Signup
+    </button>
+  </form>
+</section>
+`;
+
+exports[`<Signup /> updates password form state on input change 1`] = `
 <section
   className="auth-form"
 >
@@ -111,9 +180,78 @@ exports[`renders Signup page 1`] = `
         placeholder="Enter you password..."
         required={true}
         type="password"
+        value="12345678"
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Signup
+    </button>
+  </form>
+</section>
+`;
+
+exports[`<Signup /> updates userName form state on input change 1`] = `
+<section
+  className="auth-form"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="userName"
+        onChange={[Function]}
+        placeholder="Your username here..."
+        required={true}
+        type="text"
+        value="fred1"
+      />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="email"
+        onChange={[Function]}
+        placeholder="you@email.com"
+        required={true}
+        type="email"
         value=""
       />
     </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      />
+      <input
+        className="InputElement"
+        name="password"
+        onChange={[Function]}
+        placeholder="Enter you password..."
+        required={true}
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      type="submit"
+    >
+      Signup
+    </button>
   </form>
 </section>
 `;

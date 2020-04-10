@@ -26,51 +26,19 @@ Array [
         <li>
           <a
             aria-current={null}
-            href="/admin"
+            href="/signup"
             onClick={[Function]}
           >
-            Admin
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>,
-  <p>
-    Home
-  </p>,
-]
-`;
-
-exports[`renders App component 1`] = `
-Array [
-  <div
-    className="App"
-  >
-    <header>
-      <h1>
-        Space Soldier Armory
-      </h1>
-    </header>
-    <nav>
-      <ul>
-        <li>
-          <a
-            aria-current="page"
-            className="active"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
-          >
-            Home
+            Signup
           </a>
         </li>
         <li>
           <a
             aria-current={null}
-            href="/admin"
+            href="/login"
             onClick={[Function]}
           >
-            Admin
+            Login
           </a>
         </li>
       </ul>

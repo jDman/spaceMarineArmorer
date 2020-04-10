@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import Auth from './Auth';
 import Input from '../../components/form/input/Input';
@@ -88,8 +87,24 @@ class Signup extends Component {
     });
   }
 
-  signup(event) {
-    event.preventDefault();
+  checkValidity(value, rules) {
+    let isValid = true;
+
+    const trimedValue = value.trim();
+
+    if (rules.required) {
+      isValid = trimedValue !== '' && trimedValue !== '0' && isValid;
+    }
+
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+
+    return isValid;
   }
 
   render() {
@@ -105,7 +120,7 @@ class Signup extends Component {
 
     return (
       <Auth>
-        <form onSubmit={event => this.signup(event)}>
+        <form onSubmit={event => this.props.signup(event, this.state)}>
           {signupFormElements.map(formElement => {
             return (
               <Input
@@ -122,10 +137,11 @@ class Signup extends Component {
               />
             );
           })}
+          <button type="submit">Signup</button>
         </form>
       </Auth>
     );
   }
 }
 
-export default withRouter(Signup);
+export default Signup;

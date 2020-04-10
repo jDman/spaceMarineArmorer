@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Nav component 1`] = `
+exports[`<Nav /> renders Nav component with isAuth props 1`] = `
 <nav>
   <ul>
     <li>
@@ -21,6 +21,49 @@ exports[`renders Nav component 1`] = `
         onClick={[Function]}
       >
         Admin
+      </a>
+    </li>
+    <li>
+      <button
+        onClick={[Function]}
+      >
+        Logout
+      </button>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`<Nav /> renders Nav component without isAuth props 1`] = `
+<nav>
+  <ul>
+    <li>
+      <a
+        aria-current="page"
+        className="active"
+        href="/"
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Home
+      </a>
+    </li>
+    <li>
+      <a
+        aria-current={null}
+        href="/signup"
+        onClick={[Function]}
+      >
+        Signup
+      </a>
+    </li>
+    <li>
+      <a
+        aria-current={null}
+        href="/login"
+        onClick={[Function]}
+      >
+        Login
       </a>
     </li>
   </ul>
