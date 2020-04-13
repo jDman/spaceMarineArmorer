@@ -8,6 +8,7 @@ import Header from './components/global/Header';
 import Nav from './components/global/Nav';
 import ArmorAdmin from './pages/admin/ArmorAdmin';
 import ArmorShop from './pages/shop/ArmorShop';
+import Cart from './pages/cart/Cart';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 
@@ -36,6 +37,15 @@ function App() {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  const deleteCartItemHandler = itemId => {
+    return axios
+      .delete(`http://localhost:4000/shop/armor/cart/item`, {
+        params: { itemId }
+      })
+      .then(result => result.message)
+      .catch(err => console.log(err));
   };
 
   const loadingHandler = loadingValue => {
@@ -137,6 +147,20 @@ function App() {
 
       <Switch>
         <Route path="/admin" render={props => <ArmorAdmin />}></Route>
+
+        <Route
+          path="/cart"
+          render={props => {
+            if (generatedToken) {
+              return (
+                <Cart
+                  token={generatedToken}
+                  deleteCartItem={deleteCartItemHandler}
+                />
+              );
+            }
+          }}
+        ></Route>
 
         <Route
           path="/shop"
