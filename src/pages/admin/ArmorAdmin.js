@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from '@testing-library/react';
 import axios from 'axios';
 
 import Input from '../../components/form/input/Input';

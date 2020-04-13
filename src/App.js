@@ -7,6 +7,7 @@ import './App.css';
 import Header from './components/global/Header';
 import Nav from './components/global/Nav';
 import ArmorAdmin from './pages/admin/ArmorAdmin';
+import ArmorShop from './pages/shop/ArmorShop';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 
@@ -14,10 +15,37 @@ function App() {
   let history = useHistory();
 
   const [isAuth, setAuth] = useState(false);
-  const [generatedToken, setGeneratedToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [generatedToken, setGeneratedToken] = useState();
+
+  const addToCart = (event, armor) => {
+    event.preventDefault();
+
+    const armorId = armor.id;
+    const quantity = armor.config.value;
+
+    return axios
+      .put('http://localhost:4000/shop/armor/cart', {
+        armorId,
+        quantity
+      })
+      .then(result => {
+        console.log(result);
+        return result;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const loadingHandler = loadingValue => {
+    setIsLoading(loadingValue);
+  };
 
   const loginHandler = (event, { loading, loginFormIsValid, loginForm }) => {
     event.preventDefault();
+
+    loadingHandler(true);
 
     axios
       .post('http://localhost:4000/auth/login', {
@@ -39,16 +67,21 @@ function App() {
         setAuth(true);
         setGeneratedToken(token);
 
-        history.replace('/');
+        return;
+      })
+      .then(() => {
+        history.replace('/shop');
       })
       .catch(err => {
         console.log(err);
+      })
+      .finally(() => {
+        loadingHandler(false);
       });
   };
 
   const logoutHandler = useCallback(() => {
     setAuth(false);
-    setGeneratedToken(null);
 
     sessionStorage.removeItem('expiryDate');
     sessionStorage.removeItem('token');
@@ -59,6 +92,8 @@ function App() {
 
   const signupHandler = (event, { loading, signupFormIsValid, signupForm }) => {
     event.preventDefault();
+
+    loadingHandler(true);
 
     axios
       .post('http://localhost:4000/auth/signup', {
@@ -71,6 +106,9 @@ function App() {
       })
       .catch(err => {
         console.log(err);
+      })
+      .finally(() => {
+        loadingHandler(false);
       });
   };
 
@@ -94,10 +132,27 @@ function App() {
         <Header />
         <Nav isAuth={isAuth} logout={logoutHandler} />
       </div>
+
+      {isLoading ? <h1>Loading ...</h1> : null}
+
       <Switch>
-        <Route path="/admin">
-          <ArmorAdmin />
-        </Route>
+        <Route path="/admin" render={props => <ArmorAdmin />}></Route>
+
+        <Route
+          path="/shop"
+          render={() => {
+            if (generatedToken) {
+              return (
+                <ArmorShop
+                  addToCart={addToCart}
+                  token={generatedToken}
+                  loading={loadingHandler}
+                  isLoading={isLoading}
+                />
+              );
+            }
+          }}
+        ></Route>
 
         <Route
           path="/signup"
