@@ -9,13 +9,3 @@ exports[`<Auth /> renders Auth component and children 1`] = `
   </p>
 </section>
 `;
-
-exports[`renders Auth component and children 1`] = `
-<section
-  className="auth-form"
->
-  <p>
-    Tested
-  </p>
-</section>
-`;

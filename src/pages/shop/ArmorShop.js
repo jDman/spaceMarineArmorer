@@ -41,8 +41,6 @@ const ArmorShop = props => {
           }
         }));
 
-        console.log(armors);
-
         setFetchedArmors(armors);
         setTotalArmor(result.data.totalItems);
       })
@@ -63,14 +61,12 @@ const ArmorShop = props => {
     return isValid;
   };
 
-  const inputChangedHandler = (event, armorId) => {
-    event.preventDefault();
-
+  const inputChangedHandler = (newQuantity, armorId) => {
     const armors = [...fetchedArmors];
 
     const updatedArmorDetail = armors.find(armor => armorId === armor.id);
 
-    updatedArmorDetail.config.value = event.target.value;
+    updatedArmorDetail.config.value = newQuantity;
     updatedArmorDetail.config.touched = true;
 
     updatedArmorDetail.config.valid = checkValidity(
@@ -128,7 +124,9 @@ const ArmorShop = props => {
                 invalid={!armor.config.valid}
                 touched={armor.config.touched}
                 hasValidation={armor.config.validation}
-                changed={event => inputChangedHandler(event, armor.id)}
+                changed={event =>
+                  inputChangedHandler(event.target.value, armor.id)
+                }
               />
 
               <button type="submit" disabled={!armor.config.valid}>
