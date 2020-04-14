@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
 import Input from '../../components/form/input/Input';
@@ -8,11 +8,8 @@ const Cart = props => {
   const [usersCartItems, setUsersCartItems] = useState([]);
   const [usersCartItemsNumber, setUsersCartItemsNumber] = useState(0);
 
-  useEffect(() => {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-    axios.defaults.headers.common['Content-Type'] = 'application/json';
-
-    axios
+  const getCart = useCallback(() => {
+    return axios
       .get('http://localhost:4000/shop/armor/cart/items')
       .then(result => {
         const inputConfigCartItems = result.data.items.map(item => {
@@ -42,7 +39,23 @@ const Cart = props => {
         setUsersCartItemsNumber(inputConfigCartItems.length);
       })
       .catch(err => console.log(err));
-  }, [token]);
+  }, []);
+
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    axios.defaults.headers.common['Content-Type'] = 'application/json';
+
+    getCart();
+  }, [getCart, token]);
+
+  const deleteCartItem = itemId => {
+    props
+      .deleteCartItem(itemId)
+      .then(() => {
+        getCart();
+      })
+      .catch(err => console.error(err));
+  };
 
   const inputChangedHandler = (newQuantity, itemId) => {
     const updatedUsersCartItems = [...usersCartItems].map(item => {
@@ -74,10 +87,7 @@ const Cart = props => {
                   inputChangedHandler(event.target.value, item.armorId)
                 }
               />
-              <button
-                type="button"
-                onClick={() => props.deleteCartItem(item.itemId)}
-              >
+              <button type="button" onClick={() => deleteCartItem(item.itemId)}>
                 Delete
               </button>
             </h3>

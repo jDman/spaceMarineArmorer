@@ -12,7 +12,9 @@ exports[`<Signup /> renders Signup page 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        userName
+      </label>
       <input
         className="InputElement"
         name="userName"
@@ -28,7 +30,9 @@ exports[`<Signup /> renders Signup page 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        email
+      </label>
       <input
         className="InputElement"
         name="email"
@@ -44,7 +48,9 @@ exports[`<Signup /> renders Signup page 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        password
+      </label>
       <input
         className="InputElement"
         name="password"
@@ -76,7 +82,9 @@ exports[`<Signup /> updates email form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        userName
+      </label>
       <input
         className="InputElement"
         name="userName"
@@ -92,7 +100,9 @@ exports[`<Signup /> updates email form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        email
+      </label>
       <input
         className="InputElement"
         name="email"
@@ -108,7 +118,9 @@ exports[`<Signup /> updates email form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        password
+      </label>
       <input
         className="InputElement"
         name="password"
@@ -140,7 +152,9 @@ exports[`<Signup /> updates password form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        userName
+      </label>
       <input
         className="InputElement"
         name="userName"
@@ -156,7 +170,9 @@ exports[`<Signup /> updates password form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        email
+      </label>
       <input
         className="InputElement"
         name="email"
@@ -172,7 +188,9 @@ exports[`<Signup /> updates password form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        password
+      </label>
       <input
         className="InputElement"
         name="password"
@@ -204,7 +222,9 @@ exports[`<Signup /> updates userName form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        userName
+      </label>
       <input
         className="InputElement"
         name="userName"
@@ -220,7 +240,9 @@ exports[`<Signup /> updates userName form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        email
+      </label>
       <input
         className="InputElement"
         name="email"
@@ -236,7 +258,9 @@ exports[`<Signup /> updates userName form state on input change 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        password
+      </label>
       <input
         className="InputElement"
         name="password"

@@ -65,7 +65,11 @@ const Input = props => {
 
   return (
     <div className={classes.Input}>
-      <label className={classes.Label}>{props.label}</label>
+      <label className={classes.Label}>
+        {props.elementConfig.name
+          ? props.elementConfig.name
+          : props.elementConfig.selectAttributes.name}
+      </label>
       {inputElement}
       {errorElement}
     </div>

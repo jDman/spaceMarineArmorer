@@ -1,25 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Input /> renders Input component 1`] = `
-<div
-  className="Input"
->
-  <label
-    className="Label"
-  />
-  <input
-    className="InputElement"
-  />
-</div>
-`;
-
 exports[`<Input /> renders Input component with props passed in for elementType input number 1`] = `
 <div
   className="Input"
 >
   <label
     className="Label"
-  />
+  >
+    testNumber
+  </label>
   <input
     className="InputElement"
     max={10000}
@@ -39,7 +28,9 @@ exports[`<Input /> renders Input component with props passed in for elementType 
 >
   <label
     className="Label"
-  />
+  >
+    testText
+  </label>
   <input
     className="InputElement"
     name="testText"
@@ -57,7 +48,9 @@ exports[`<Input /> renders Input component with props passed in for elementType 
 >
   <label
     className="Label"
-  />
+  >
+    testSelect
+  </label>
   <select
     className="InputElement"
     name="testSelect"
@@ -90,7 +83,9 @@ exports[`<Input /> renders Input component with props passed in for elementType 
 >
   <label
     className="Label"
-  />
+  >
+    testTextarea
+  </label>
   <textarea
     className="InputElement"
     maxLength={2000}

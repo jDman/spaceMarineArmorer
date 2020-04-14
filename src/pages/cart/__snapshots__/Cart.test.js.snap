@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Cart /> should render Cart page with cart items array returned from server 1`] = `
+Array [
+  <ul>
+    <li>
+      <h3>
+        helmet
+         
+        <span>
+          Total price: 
+          600
+        </span>
+        <div
+          className="Input"
+        >
+          <label
+            className="Label"
+          >
+            quantity
+          </label>
+          <input
+            className="InputElement"
+            max={99}
+            min={0}
+            name="quantity"
+            onChange={[Function]}
+            step={1}
+            type="number"
+            value={3}
+          />
+        </div>
+        <button
+          onClick={[Function]}
+          type="button"
+        >
+          Delete
+        </button>
+      </h3>
+    </li>
+  </ul>,
+  <p>
+    Items in cart: 
+    1
+  </p>,
+]
+`;
+
+exports[`<Cart /> should render Cart page with empty cart items array returned from server 1`] = `
+Array [
+  <ul />,
+  <p>
+    Items in cart: 
+    0
+  </p>,
+]
+`;

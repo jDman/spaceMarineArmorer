@@ -28,6 +28,14 @@ function Nav(props) {
             </li>
 
             <li>
+              <NavLink to="/shop">Shop</NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/cart">Cart</NavLink>
+            </li>
+
+            <li>
               <button onClick={() => props.logout()}>Logout</button>
             </li>
           </Fragment>

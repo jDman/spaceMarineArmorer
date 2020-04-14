@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ArmorShop /> renders ArmorShop page with empty armor array returned from server 1`] = `
+exports[`<ArmorShop /> should render ArmorShop page with empty armor array returned from server 1`] = `
 Array [
   <ul />,
   <p>
@@ -10,7 +10,7 @@ Array [
 ]
 `;
 
-exports[`<ArmorShop /> renders ArmorShop page with results returned from server for armor 1`] = `
+exports[`<ArmorShop /> should render ArmorShop page with results returned from server for armor 1`] = `
 Array [
   <ul>
     <li>
@@ -59,7 +59,9 @@ Array [
         >
           <label
             className="Label"
-          />
+          >
+            quantity
+          </label>
           <input
             className="InputElement"
             max={99}
@@ -136,7 +138,9 @@ Array [
         >
           <label
             className="Label"
-          />
+          >
+            quantity
+          </label>
           <input
             className="InputElement"
             max={99}

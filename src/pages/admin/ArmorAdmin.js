@@ -8,54 +8,12 @@ class ArmorAdmin extends Component {
     loading: false,
     armorDetailsFormIsValid: false,
     armorDetailsForm: {
-      shield: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'number',
-          name: 'shield',
-          min: 0,
-          max: 100,
-          step: 10
-        },
-        value: 0,
-        valid: true,
-        validation: {},
-        touched: false
-      },
-      stock: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'number',
-          name: 'stock',
-          min: 0,
-          max: 100,
-          step: 1
-        },
-        value: 0,
-        valid: true,
-        validation: {},
-        touched: false
-      },
-      discount: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'number',
-          name: 'discount',
-          min: 0,
-          max: 100,
-          step: 5
-        },
-        value: 0,
-        valid: true,
-        validation: {},
-        touched: false
-      },
       type: {
         elementType: 'select',
         elementConfig: {
           selectAttributes: {
             type: 'select',
-            name: 'protection',
+            name: 'type',
             required: true
           },
           options: [
@@ -63,63 +21,6 @@ class ArmorAdmin extends Component {
             { value: 'body', displayValue: 'Body' },
             { value: 'arm', displayValue: 'Arm' },
             { value: 'leg', displayValue: 'Leg' }
-          ]
-        },
-        value: '',
-        valid: false,
-        validation: { required: true },
-        touched: false
-      },
-      cost: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'number',
-          name: 'cost',
-          required: true,
-          min: 0,
-          max: 10000,
-          step: 100
-        },
-        value: 0,
-        validation: {
-          required: true,
-          min: 0,
-          max: 10000
-        },
-        valid: false,
-        touched: false
-      },
-      protection: {
-        elementType: 'select',
-        elementConfig: {
-          selectAttributes: {
-            type: 'select',
-            name: 'protection',
-            required: true
-          },
-          options: [
-            { value: 'high', displayValue: 'High' },
-            { value: 'medium', displayValue: 'Medium' },
-            { value: 'low', displayValue: 'Low' }
-          ]
-        },
-        value: '',
-        valid: false,
-        validation: { required: true },
-        touched: false
-      },
-      quality: {
-        elementType: 'select',
-        elementConfig: {
-          selectAttributes: {
-            type: 'select',
-            name: 'quality',
-            required: true
-          },
-          options: [
-            { value: 'high', displayValue: 'High' },
-            { value: 'medium', displayValue: 'Medium' },
-            { value: 'low', displayValue: 'Low' }
           ]
         },
         value: '',
@@ -157,6 +58,107 @@ class ArmorAdmin extends Component {
             { value: 'starscape_systems', displayValue: 'Starscape Systems' },
             { value: 'adrax_corp', displayValue: 'Adrax Corp' },
             { value: 'orian_labs', displayValue: 'Orian Labs' }
+          ]
+        },
+        value: '',
+        valid: false,
+        validation: { required: true },
+        touched: false
+      },
+      stock: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'number',
+          name: 'stock',
+          min: 0,
+          max: 100,
+          step: 1
+        },
+        value: 0,
+        valid: true,
+        validation: {},
+        touched: false
+      },
+      discount: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'number',
+          name: 'discount',
+          min: 0,
+          max: 100,
+          step: 5
+        },
+        value: 0,
+        valid: true,
+        validation: {},
+        touched: false
+      },
+
+      cost: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'number',
+          name: 'cost',
+          required: true,
+          min: 0,
+          max: 10000,
+          step: 100
+        },
+        value: 0,
+        validation: {
+          required: true,
+          min: 0,
+          max: 10000
+        },
+        valid: false,
+        touched: false
+      },
+      shield: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'number',
+          name: 'shield',
+          min: 0,
+          max: 100,
+          step: 10
+        },
+        value: 0,
+        valid: true,
+        validation: {},
+        touched: false
+      },
+
+      protection: {
+        elementType: 'select',
+        elementConfig: {
+          selectAttributes: {
+            type: 'select',
+            name: 'protection',
+            required: true
+          },
+          options: [
+            { value: 'high', displayValue: 'High' },
+            { value: 'medium', displayValue: 'Medium' },
+            { value: 'low', displayValue: 'Low' }
+          ]
+        },
+        value: '',
+        valid: false,
+        validation: { required: true },
+        touched: false
+      },
+      quality: {
+        elementType: 'select',
+        elementConfig: {
+          selectAttributes: {
+            type: 'select',
+            name: 'quality',
+            required: true
+          },
+          options: [
+            { value: 'high', displayValue: 'High' },
+            { value: 'medium', displayValue: 'Medium' },
+            { value: 'low', displayValue: 'Low' }
           ]
         },
         value: '',

@@ -3,12 +3,6 @@ import renderer from 'react-test-renderer';
 import Input from './Input';
 
 describe('<Input />', () => {
-  it('renders Input component', () => {
-    const component = renderer.create(<Input />);
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   it('renders Input component with props passed in for elementType input text', () => {
     const config = {
       elementType: 'input',

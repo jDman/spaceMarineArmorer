@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import renderer, { act } from 'react-test-renderer';
 import axios from 'axios';
 
@@ -8,7 +7,7 @@ import ArmorShop from './ArmorShop';
 jest.mock('axios');
 
 describe('<ArmorShop />', () => {
-  it('renders ArmorShop page with empty armor array returned from server', async () => {
+  it('should render ArmorShop page with empty armor array returned from server', async () => {
     const result = {
       data: {
         armor: [],
@@ -25,7 +24,7 @@ describe('<ArmorShop />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders ArmorShop page with results returned from server for armor', async () => {
+  it('should render ArmorShop page with results returned from server for armor', async () => {
     const result = {
       data: {
         armor: [

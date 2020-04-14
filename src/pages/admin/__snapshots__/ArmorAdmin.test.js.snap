@@ -10,61 +10,12 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
     >
       <label
         className="Label"
-      />
-      <input
-        className="InputElement"
-        max={100}
-        min={0}
-        name="shield"
-        onChange={[Function]}
-        step={10}
-        type="number"
-        value={0}
-      />
-    </div>
-    <div
-      className="Input"
-    >
-      <label
-        className="Label"
-      />
-      <input
-        className="InputElement"
-        max={100}
-        min={0}
-        name="stock"
-        onChange={[Function]}
-        step={1}
-        type="number"
-        value={0}
-      />
-    </div>
-    <div
-      className="Input"
-    >
-      <label
-        className="Label"
-      />
-      <input
-        className="InputElement"
-        max={100}
-        min={0}
-        name="discount"
-        onChange={[Function]}
-        step={5}
-        type="number"
-        value={0}
-      />
-    </div>
-    <div
-      className="Input"
-    >
-      <label
-        className="Label"
-      />
+      >
+        type
+      </label>
       <select
         className="InputElement"
-        name="protection"
+        name="type"
         onChange={[Function]}
         required={true}
         type="select"
@@ -97,7 +48,99 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
     >
       <label
         className="Label"
+      >
+        description
+      </label>
+      <textarea
+        className="InputElement"
+        maxLength={2000}
+        minLength={5}
+        name="description"
+        onChange={[Function]}
+        placeholder="This armor is..."
+        required={true}
+        value=""
       />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      >
+        company
+      </label>
+      <select
+        className="InputElement"
+        name="company"
+        onChange={[Function]}
+        required={true}
+        type="select"
+        value=""
+      >
+        <option
+          value="starscape_systems"
+        >
+          Starscape Systems
+        </option>
+        <option
+          value="adrax_corp"
+        >
+          Adrax Corp
+        </option>
+        <option
+          value="orian_labs"
+        >
+          Orian Labs
+        </option>
+      </select>
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      >
+        stock
+      </label>
+      <input
+        className="InputElement"
+        max={100}
+        min={0}
+        name="stock"
+        onChange={[Function]}
+        step={1}
+        type="number"
+        value={0}
+      />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      >
+        discount
+      </label>
+      <input
+        className="InputElement"
+        max={100}
+        min={0}
+        name="discount"
+        onChange={[Function]}
+        step={5}
+        type="number"
+        value={0}
+      />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      >
+        cost
+      </label>
       <input
         className="InputElement"
         max={10000}
@@ -115,7 +158,28 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
     >
       <label
         className="Label"
+      >
+        shield
+      </label>
+      <input
+        className="InputElement"
+        max={100}
+        min={0}
+        name="shield"
+        onChange={[Function]}
+        step={10}
+        type="number"
+        value={0}
       />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      >
+        protection
+      </label>
       <select
         className="InputElement"
         name="protection"
@@ -146,7 +210,9 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
     >
       <label
         className="Label"
-      />
+      >
+        quality
+      </label>
       <select
         className="InputElement"
         name="quality"
@@ -169,54 +235,6 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
           value="low"
         >
           Low
-        </option>
-      </select>
-    </div>
-    <div
-      className="Input"
-    >
-      <label
-        className="Label"
-      />
-      <textarea
-        className="InputElement"
-        maxLength={2000}
-        minLength={5}
-        name="description"
-        onChange={[Function]}
-        placeholder="This armor is..."
-        required={true}
-        value=""
-      />
-    </div>
-    <div
-      className="Input"
-    >
-      <label
-        className="Label"
-      />
-      <select
-        className="InputElement"
-        name="company"
-        onChange={[Function]}
-        required={true}
-        type="select"
-        value=""
-      >
-        <option
-          value="starscape_systems"
-        >
-          Starscape Systems
-        </option>
-        <option
-          value="adrax_corp"
-        >
-          Adrax Corp
-        </option>
-        <option
-          value="orian_labs"
-        >
-          Orian Labs
         </option>
       </select>
     </div>

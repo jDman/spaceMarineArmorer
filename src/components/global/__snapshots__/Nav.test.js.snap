@@ -24,6 +24,24 @@ exports[`<Nav /> renders Nav component with isAuth props 1`] = `
       </a>
     </li>
     <li>
+      <a
+        aria-current={null}
+        href="/shop"
+        onClick={[Function]}
+      >
+        Shop
+      </a>
+    </li>
+    <li>
+      <a
+        aria-current={null}
+        href="/cart"
+        onClick={[Function]}
+      >
+        Cart
+      </a>
+    </li>
+    <li>
       <button
         onClick={[Function]}
       >
