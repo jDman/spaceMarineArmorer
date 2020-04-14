@@ -19,7 +19,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [generatedToken, setGeneratedToken] = useState();
 
-  const addToCart = (event, armor) => {
+  const addToCartHandler = (event, armor) => {
     event.preventDefault();
 
     const armorId = armor.id;
@@ -122,6 +122,15 @@ function App() {
       });
   };
 
+  const orderItemsHandler = items => {
+    return axios
+      .post(`http://localhost:4000/shop/armor/order`, {
+        items
+      })
+      .then(result => result.message)
+      .catch(err => console.log(err));
+  };
+
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     const expiryDate = sessionStorage.getItem('expiryDate');
@@ -156,6 +165,7 @@ function App() {
                 <Cart
                   token={generatedToken}
                   deleteCartItem={deleteCartItemHandler}
+                  orderItems={orderItemsHandler}
                 />
               );
             }
@@ -168,7 +178,7 @@ function App() {
             if (generatedToken) {
               return (
                 <ArmorShop
-                  addToCart={addToCart}
+                  addToCart={addToCartHandler}
                   token={generatedToken}
                   loading={loadingHandler}
                   isLoading={isLoading}
