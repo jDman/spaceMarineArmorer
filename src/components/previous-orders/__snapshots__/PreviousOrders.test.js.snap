@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PreviousOrders /> should render component and display list of previous orders 1`] = `
+<ul>
+  <div>
+    <h2>
+      Previous orders
+    </h2>
+    <h3>
+      Order ID: 
+      5e98106449355843575cf0c1
+    </h3>
+    <li>
+      <h4>
+        body
+      </h4>
+    </li>
+    <li>
+      <h4>
+        helmet
+      </h4>
+    </li>
+  </div>
+</ul>
+`;

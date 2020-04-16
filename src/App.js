@@ -11,6 +11,7 @@ import ArmorShop from './pages/shop/ArmorShop';
 import Cart from './pages/cart/Cart';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
+import PreviousOrders from './components/previous-orders/PreviousOrders';
 
 function App() {
   let history = useHistory();
@@ -235,31 +236,19 @@ function App() {
             <button onClick={() => showPreciousOrdersHandler()}>
               View previous orders
             </button>
-          ) : null}
+          ) : (
+            <button onClick={() => setShowPreviousOrders(false)}>
+              Hide previous orders
+            </button>
+          )}
 
           {showPreviousOrders ? (
             <section>
               {previousOrders.length ? (
-                <Fragment>
-                  <ul>
-                    {previousOrders.map((order) => (
-                      <div key={order._id}>
-                        <h2>Previous orders</h2>
-                        <h3>Order ID: {order._id}</h3>
-
-                        {order.items.map((item) => (
-                          <li key={item.armor._id}>
-                            <h4>{item.armor.type}</h4>
-                          </li>
-                        ))}
-                      </div>
-                    ))}
-                  </ul>
-                  <button onClick={() => setShowPreviousOrders(false)}>
-                    Hide previous orders
-                  </button>
-                </Fragment>
-              ) : null}
+                <PreviousOrders previousOrders={previousOrders} />
+              ) : (
+                <h2>No orders found.</h2>
+              )}
             </section>
           ) : null}
         </Route>

@@ -44,8 +44,13 @@ Array [
       </ul>
     </nav>
   </div>,
-  <p>
-    Home
-  </p>,
+  <h1>
+    Welome to your local Space Marine Armory
+  </h1>,
+  <button
+    onClick={[Function]}
+  >
+    View previous orders
+  </button>,
 ]
 `;
