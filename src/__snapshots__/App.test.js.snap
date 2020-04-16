@@ -12,7 +12,7 @@ Array [
     </header>
     <nav>
       <ul
-        class="navigation"
+        className="navigation"
       >
         <li>
           <a

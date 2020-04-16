@@ -11,6 +11,23 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
       <label
         className="Label"
       >
+        name
+      </label>
+      <input
+        className="InputElement"
+        name="name"
+        onChange={[Function]}
+        required={true}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="Input"
+    >
+      <label
+        className="Label"
+      >
         type
       </label>
       <select
@@ -19,7 +36,7 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
         onChange={[Function]}
         required={true}
         type="select"
-        value=""
+        value="helmet"
       >
         <option
           value="helmet"
@@ -76,7 +93,7 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
         onChange={[Function]}
         required={true}
         type="select"
-        value=""
+        value="starscape_systems"
       >
         <option
           value="starscape_systems"
@@ -186,7 +203,7 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
         onChange={[Function]}
         required={true}
         type="select"
-        value=""
+        value="high"
       >
         <option
           value="high"
@@ -219,7 +236,7 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
         onChange={[Function]}
         required={true}
         type="select"
-        value=""
+        value="high"
       >
         <option
           value="high"
@@ -238,12 +255,18 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
         </option>
       </select>
     </div>
-    <button
-      disabled={true}
-      type="submit"
+    <div
+      className="SubmitFormButton"
     >
-      Add
-    </button>
+      <button
+        className=""
+        disabled={true}
+        onClick={[Function]}
+        type="submit"
+      >
+        Add
+      </button>
+    </div>
   </form>
 </section>
 `;

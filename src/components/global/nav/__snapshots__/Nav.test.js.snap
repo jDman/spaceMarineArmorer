@@ -3,7 +3,7 @@
 exports[`<Nav /> renders Nav component with isAuth props 1`] = `
 <nav>
   <ul
-    class="navigation"
+    className="navigation"
   >
     <li>
       <a
@@ -57,7 +57,7 @@ exports[`<Nav /> renders Nav component with isAuth props 1`] = `
 exports[`<Nav /> renders Nav component without isAuth props 1`] = `
 <nav>
   <ul
-    class="navigation"
+    className="navigation"
   >
     <li>
       <a

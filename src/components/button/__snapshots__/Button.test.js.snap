@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should render with all props included 1`] = `
+<button
+  className="test classes"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+/>
+`;
+
+exports[`<Button /> should render without unnecessary props 1`] = `
+<button
+  className=""
+  onClick={[Function]}
+  type="button"
+/>
+`;

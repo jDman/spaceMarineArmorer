@@ -2,12 +2,29 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Input from '../../components/form/input/Input';
+import Button from '../../components/button/Button';
+
+import classes from './ArmorAdmin.module.css';
 
 class ArmorAdmin extends Component {
   state = {
     loading: false,
     armorDetailsFormIsValid: false,
     armorDetailsForm: {
+      name: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          name: 'name',
+          required: true,
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false,
+      },
       type: {
         elementType: 'select',
         elementConfig: {
@@ -23,8 +40,8 @@ class ArmorAdmin extends Component {
             { value: 'leg', displayValue: 'Leg' },
           ],
         },
-        value: '',
-        valid: false,
+        value: 'helmet',
+        valid: true,
         validation: { required: true },
         touched: false,
       },
@@ -60,8 +77,8 @@ class ArmorAdmin extends Component {
             { value: 'orian_labs', displayValue: 'Orian Labs' },
           ],
         },
-        value: '',
-        valid: false,
+        value: 'starscape_systems',
+        valid: true,
         validation: { required: true },
         touched: false,
       },
@@ -142,8 +159,8 @@ class ArmorAdmin extends Component {
             { value: 'low', displayValue: 'Low' },
           ],
         },
-        value: '',
-        valid: false,
+        value: 'high',
+        valid: true,
         validation: { required: true },
         touched: false,
       },
@@ -161,8 +178,8 @@ class ArmorAdmin extends Component {
             { value: 'low', displayValue: 'Low' },
           ],
         },
-        value: '',
-        valid: false,
+        value: 'high',
+        valid: true,
         validation: { required: true },
         touched: false,
       },
@@ -179,6 +196,8 @@ class ArmorAdmin extends Component {
     for (let key in this.state.armorDetailsForm) {
       armorDetailsFormData[key] = this.state.armorDetailsForm[key].value;
     }
+
+    console.log(armorDetailsFormData);
 
     axios
       .post('http://localhost:4000/admin/armor/add', {
@@ -278,10 +297,14 @@ class ArmorAdmin extends Component {
               }
             />
           ))}
-
-          <button type="submit" disabled={!this.state.armorDetailsFormIsValid}>
-            Add
-          </button>
+          <div className={classes.SubmitFormButton}>
+            <Button
+              type="submit"
+              disabled={!this.state.armorDetailsFormIsValid}
+              buttonText="Add"
+              clickHandler={() => {}}
+            />
+          </div>
         </form>
       </section>
     );
