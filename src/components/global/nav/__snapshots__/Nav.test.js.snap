@@ -2,7 +2,9 @@
 
 exports[`<Nav /> renders Nav component with isAuth props 1`] = `
 <nav>
-  <ul>
+  <ul
+    class="navigation"
+  >
     <li>
       <a
         aria-current="page"
@@ -54,7 +56,9 @@ exports[`<Nav /> renders Nav component with isAuth props 1`] = `
 
 exports[`<Nav /> renders Nav component without isAuth props 1`] = `
 <nav>
-  <ul>
+  <ul
+    class="navigation"
+  >
     <li>
       <a
         aria-current="page"

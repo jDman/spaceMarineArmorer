@@ -11,7 +11,9 @@ Array [
       </h1>
     </header>
     <nav>
-      <ul>
+      <ul
+        class="navigation"
+      >
         <li>
           <a
             aria-current="page"

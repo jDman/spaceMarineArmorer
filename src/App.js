@@ -4,8 +4,8 @@ import axios from 'axios';
 import { withRouter, useHistory } from 'react-router-dom';
 
 import './App.css';
-import Header from './components/global/Header';
-import Nav from './components/global/Nav';
+import Header from './components/global/header/Header';
+import Nav from './components/global/nav/Nav';
 import ArmorAdmin from './pages/admin/ArmorAdmin';
 import ArmorShop from './pages/shop/ArmorShop';
 import Cart from './pages/cart/Cart';
