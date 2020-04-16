@@ -7,6 +7,7 @@ const Cart = (props) => {
   const token = props.token;
   const [usersCartItems, setUsersCartItems] = useState([]);
   const [usersCartItemsNumber, setUsersCartItemsNumber] = useState(0);
+  const [canOrder, setCanOrder] = useState(false);
 
   const getCart = useCallback(() => {
     return axios
@@ -35,14 +36,18 @@ const Cart = (props) => {
           };
         });
 
+        const inputConfigCartItemsLength = inputConfigCartItems.length;
+
         setUsersCartItems(inputConfigCartItems);
-        setUsersCartItemsNumber(inputConfigCartItems.length);
+        setUsersCartItemsNumber(inputConfigCartItemsLength);
+
+        inputConfigCartItemsLength ? setCanOrder(true) : setCanOrder(false);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const deleteCartItem = (itemId) => {
-    props
+  const deleteCartItem = async (itemId) => {
+    await props
       .deleteCartItem(itemId)
       .then(() => {
         getCart();
@@ -60,6 +65,15 @@ const Cart = (props) => {
     });
 
     setUsersCartItems(updatedUsersCartItems);
+  };
+
+  const orderItems = async (items) => {
+    await props
+      .orderItems(items)
+      .then((result) => {
+        getCart();
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -97,7 +111,7 @@ const Cart = (props) => {
 
       <p>Items in cart: {usersCartItemsNumber}</p>
 
-      <button onClick={() => props.orderItems(usersCartItems)}>
+      <button onClick={() => orderItems(usersCartItems)} disabled={!canOrder}>
         Order Item(s)
       </button>
     </Fragment>

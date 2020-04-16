@@ -1,169 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ArmorShop /> should render ArmorShop page with empty armor array returned from server 1`] = `
-Array [
-  <ul />,
-  <p>
-    Total: 
-    0
-  </p>,
-]
-`;
+exports[`<ArmorShop /> should render ArmorShop page with empty armor array returned from server 1`] = `<ul />`;
 
 exports[`<ArmorShop /> should render ArmorShop page with results returned from server for armor 1`] = `
-Array [
-  <ul>
-    <li>
-      <p>
-        Type: 
-        helmet
-      </p>
-      <p>
-        Description: 
-        Low tier trash
-      </p>
-      <p>
-        Company:
-         
-        starscape systems
-      </p>
-      <p>
-        Quality: 
-        low
-      </p>
-      <p>
-        Protection: 
-        low
-      </p>
-      <p>
-        Shield: 
-        50
-      </p>
-      <p>
-        Discount: 
-        30
-      </p>
-      <p>
-        Cost: 
-        200
-      </p>
-      <small>
-        Created By: 
-        Freddy
-      </small>
-      <form
-        onSubmit={[Function]}
+<ul>
+  <li>
+    <p>
+      Type: 
+      helmet
+    </p>
+    <p>
+      Description: 
+      Low tier trash
+    </p>
+    <p>
+      Company: 
+      starscape systems
+    </p>
+    <p>
+      Quality: 
+      low
+    </p>
+    <p>
+      Protection: 
+      low
+    </p>
+    <p>
+      Shield: 
+      50
+    </p>
+    <p>
+      Discount: 
+      30
+    </p>
+    <p>
+      Cost: 
+      200
+    </p>
+    <small>
+      Created By: 
+      Freddy
+    </small>
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="Input"
       >
-        <div
-          className="Input"
+        <label
+          className="Label"
         >
-          <label
-            className="Label"
-          >
-            quantity
-          </label>
-          <input
-            className="InputElement"
-            max={99}
-            min={0}
-            name="quantity"
-            onChange={[Function]}
-            step={1}
-            type="number"
-            value={0}
-          />
-        </div>
-        <button
-          disabled={true}
-          type="submit"
-        >
-          Add to Cart
-        </button>
-      </form>
-    </li>
-  </ul>,
-  <p>
-    Total: 
-    1
-  </p>,
-]
+          quantity
+        </label>
+        <input
+          className="InputElement"
+          max={99}
+          min={0}
+          name="quantity"
+          onChange={[Function]}
+          step={1}
+          type="number"
+          value={0}
+        />
+      </div>
+      <button
+        disabled={true}
+        type="submit"
+      >
+        Add to Cart
+      </button>
+    </form>
+  </li>
+</ul>
 `;
 
 exports[`<ArmorShop /> updates quantity form state on input change 1`] = `
-Array [
-  <ul>
-    <li>
-      <p>
-        Type: 
-        helmet
-      </p>
-      <p>
-        Description: 
-        Low tier trash
-      </p>
-      <p>
-        Company:
-         
-        starscape systems
-      </p>
-      <p>
-        Quality: 
-        low
-      </p>
-      <p>
-        Protection: 
-        low
-      </p>
-      <p>
-        Shield: 
-        50
-      </p>
-      <p>
-        Discount: 
-        30
-      </p>
-      <p>
-        Cost: 
-        200
-      </p>
-      <small>
-        Created By: 
-        Freddy
-      </small>
-      <form
-        onSubmit={[Function]}
+<ul>
+  <li>
+    <p>
+      Type: 
+      helmet
+    </p>
+    <p>
+      Description: 
+      Low tier trash
+    </p>
+    <p>
+      Company: 
+      starscape systems
+    </p>
+    <p>
+      Quality: 
+      low
+    </p>
+    <p>
+      Protection: 
+      low
+    </p>
+    <p>
+      Shield: 
+      50
+    </p>
+    <p>
+      Discount: 
+      30
+    </p>
+    <p>
+      Cost: 
+      200
+    </p>
+    <small>
+      Created By: 
+      Freddy
+    </small>
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="Input"
       >
-        <div
-          className="Input"
+        <label
+          className="Label"
         >
-          <label
-            className="Label"
-          >
-            quantity
-          </label>
-          <input
-            className="InputElement"
-            max={99}
-            min={0}
-            name="quantity"
-            onChange={[Function]}
-            step={1}
-            type="number"
-            value="5"
-          />
-        </div>
-        <button
-          disabled={false}
-          type="submit"
-        >
-          Add to Cart
-        </button>
-      </form>
-    </li>
-  </ul>,
-  <p>
-    Total: 
-    1
-  </p>,
-]
+          quantity
+        </label>
+        <input
+          className="InputElement"
+          max={99}
+          min={0}
+          name="quantity"
+          onChange={[Function]}
+          step={1}
+          type="number"
+          value="5"
+        />
+      </div>
+      <button
+        disabled={false}
+        type="submit"
+      >
+        Add to Cart
+      </button>
+    </form>
+  </li>
+</ul>
 `;

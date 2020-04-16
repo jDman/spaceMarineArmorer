@@ -14,19 +14,19 @@ class ArmorAdmin extends Component {
           selectAttributes: {
             type: 'select',
             name: 'type',
-            required: true
+            required: true,
           },
           options: [
             { value: 'helmet', displayValue: 'Helmet' },
             { value: 'body', displayValue: 'Body' },
             { value: 'arm', displayValue: 'Arm' },
-            { value: 'leg', displayValue: 'Leg' }
-          ]
+            { value: 'leg', displayValue: 'Leg' },
+          ],
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
+        touched: false,
       },
       description: {
         elementType: 'textarea',
@@ -35,16 +35,16 @@ class ArmorAdmin extends Component {
           placeholder: 'This armor is...',
           required: true,
           minLength: 5,
-          maxLength: 2000
+          maxLength: 2000,
         },
         value: '',
         validation: {
           required: true,
           minLength: 5,
-          maxLength: 2000
+          maxLength: 2000,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       company: {
         elementType: 'select',
@@ -52,18 +52,18 @@ class ArmorAdmin extends Component {
           selectAttributes: {
             type: 'select',
             name: 'company',
-            required: true
+            required: true,
           },
           options: [
             { value: 'starscape_systems', displayValue: 'Starscape Systems' },
             { value: 'adrax_corp', displayValue: 'Adrax Corp' },
-            { value: 'orian_labs', displayValue: 'Orian Labs' }
-          ]
+            { value: 'orian_labs', displayValue: 'Orian Labs' },
+          ],
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
+        touched: false,
       },
       stock: {
         elementType: 'input',
@@ -72,12 +72,12 @@ class ArmorAdmin extends Component {
           name: 'stock',
           min: 0,
           max: 100,
-          step: 1
+          step: 1,
         },
         value: 0,
         valid: true,
         validation: {},
-        touched: false
+        touched: false,
       },
       discount: {
         elementType: 'input',
@@ -86,12 +86,12 @@ class ArmorAdmin extends Component {
           name: 'discount',
           min: 0,
           max: 100,
-          step: 5
+          step: 5,
         },
         value: 0,
         valid: true,
         validation: {},
-        touched: false
+        touched: false,
       },
 
       cost: {
@@ -102,16 +102,16 @@ class ArmorAdmin extends Component {
           required: true,
           min: 0,
           max: 10000,
-          step: 100
+          step: 100,
         },
         value: 0,
         validation: {
           required: true,
           min: 0,
-          max: 10000
+          max: 10000,
         },
         valid: false,
-        touched: false
+        touched: false,
       },
       shield: {
         elementType: 'input',
@@ -120,12 +120,12 @@ class ArmorAdmin extends Component {
           name: 'shield',
           min: 0,
           max: 100,
-          step: 10
+          step: 10,
         },
         value: 0,
         valid: true,
         validation: {},
-        touched: false
+        touched: false,
       },
 
       protection: {
@@ -134,18 +134,18 @@ class ArmorAdmin extends Component {
           selectAttributes: {
             type: 'select',
             name: 'protection',
-            required: true
+            required: true,
           },
           options: [
             { value: 'high', displayValue: 'High' },
             { value: 'medium', displayValue: 'Medium' },
-            { value: 'low', displayValue: 'Low' }
-          ]
+            { value: 'low', displayValue: 'Low' },
+          ],
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
+        touched: false,
       },
       quality: {
         elementType: 'select',
@@ -153,25 +153,21 @@ class ArmorAdmin extends Component {
           selectAttributes: {
             type: 'select',
             name: 'quality',
-            required: true
+            required: true,
           },
           options: [
             { value: 'high', displayValue: 'High' },
             { value: 'medium', displayValue: 'Medium' },
-            { value: 'low', displayValue: 'Low' }
-          ]
+            { value: 'low', displayValue: 'Low' },
+          ],
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
-      }
-    }
+        touched: false,
+      },
+    },
   };
-
-  // goHome() {
-  //   this.props.history.push('/');
-  // }
 
   addArmor(event) {
     event.preventDefault();
@@ -187,12 +183,12 @@ class ArmorAdmin extends Component {
     axios
       .post('http://localhost:4000/admin/armor/add', {
         ...armorDetailsFormData,
-        createdBy: { userId: '5e70dfb438cee83fd9e004fd', userName: 'Freddy' }
+        createdBy: { userId: '5e70dfb438cee83fd9e004fd', userName: 'Freddy' },
       })
-      .then(result => {
+      .then((result) => {
         console.log(result);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -219,7 +215,7 @@ class ArmorAdmin extends Component {
 
   inputChangedHandler(event, identifier) {
     const updatedArmorDetailsForm = {
-      ...this.state.armorDetailsForm
+      ...this.state.armorDetailsForm,
     };
 
     const updatedArmorDetail = { ...updatedArmorDetailsForm[identifier] };
@@ -250,7 +246,7 @@ class ArmorAdmin extends Component {
 
     this.setState({
       armorDetailsForm: updatedArmorDetailsForm,
-      armorDetailsFormIsValid: formIsValid
+      armorDetailsFormIsValid: formIsValid,
     });
   }
 
@@ -261,18 +257,14 @@ class ArmorAdmin extends Component {
     for (let key in armorDetailsForm) {
       armorDetailsFormElements.push({
         id: key,
-        config: armorDetailsForm[key]
+        config: armorDetailsForm[key],
       });
     }
 
     return (
       <section>
-        {/* <button type="button" onClick={this.goHome.bind(this)}>
-          Home
-        </button> */}
-
-        <form onSubmit={event => this.addArmor(event)}>
-          {armorDetailsFormElements.map(formElement => (
+        <form onSubmit={(event) => this.addArmor(event)}>
+          {armorDetailsFormElements.map((formElement) => (
             <Input
               key={formElement.id}
               elementType={formElement.config.elementType}
@@ -281,7 +273,9 @@ class ArmorAdmin extends Component {
               invalid={!formElement.config.valid}
               touched={formElement.config.touched}
               hasValidation={formElement.config.validation}
-              changed={event => this.inputChangedHandler(event, formElement.id)}
+              changed={(event) =>
+                this.inputChangedHandler(event, formElement.id)
+              }
             />
           ))}
 

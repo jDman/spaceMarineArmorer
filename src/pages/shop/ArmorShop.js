@@ -3,16 +3,30 @@ import axios from 'axios';
 
 import Input from '../../components/form/input/Input';
 
-const ArmorShop = props => {
+const ArmorShop = (props) => {
   const { token } = props;
   const [fetchedArmors, setFetchedArmors] = useState([]);
-  const [totalArmor, setTotalArmor] = useState(0);
+
+  const addToCart = async (event, armor) => {
+    await props
+      .addToCart(event, armor)
+      .then((result) => {
+        const updatedFetchedArmors = [...fetchedArmors].map((armor) => {
+          armor.config.value = 0;
+
+          return armor;
+        });
+
+        setFetchedArmors(updatedFetchedArmors);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const getArmors = useCallback(() => {
     return axios
-      .get('http://localhost:4000/shop/armor')
-      .then(result => {
-        const armors = result.data.armor.map(armor => ({
+      .get('http://localhost:4000/shop/armors')
+      .then((result) => {
+        const armors = result.data.armors.map((armor) => ({
           id: armor._id,
           type: armor.type,
           description: armor.description,
@@ -30,21 +44,20 @@ const ArmorShop = props => {
               name: 'quantity',
               min: 0,
               max: 99,
-              step: 1
+              step: 1,
             },
             value: 0,
             valid: false,
             validation: {
-              min: 1
+              min: 1,
             },
-            touched: false
-          }
+            touched: false,
+          },
         }));
 
         setFetchedArmors(armors);
-        setTotalArmor(result.data.totalItems);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -64,7 +77,7 @@ const ArmorShop = props => {
   const inputChangedHandler = (newQuantity, armorId) => {
     const armors = [...fetchedArmors];
 
-    const updatedArmorDetail = armors.find(armor => armorId === armor.id);
+    const updatedArmorDetail = armors.find((armor) => armorId === armor.id);
 
     updatedArmorDetail.config.value = newQuantity;
     updatedArmorDetail.config.touched = true;
@@ -74,10 +87,10 @@ const ArmorShop = props => {
       updatedArmorDetail.config.validation
     );
 
-    armors.map(armor => {
+    armors.map((armor) => {
       if (armor.id === armorId) {
         return {
-          ...updatedArmorDetail
+          ...updatedArmorDetail,
         };
       }
 
@@ -96,17 +109,11 @@ const ArmorShop = props => {
   return (
     <Fragment>
       <ul>
-        {fetchedArmors.map(armor => (
+        {fetchedArmors.map((armor) => (
           <li key={armor.id}>
             <p>Type: {armor.type}</p>
             <p>Description: {armor.description}</p>
-            <p>
-              Company:{' '}
-              {armor.company
-                .trim()
-                .split('_')
-                .join(' ')}
-            </p>
+            <p>Company: {armor.company.trim().split('_').join(' ')}</p>
             <p>Quality: {armor.quality}</p>
             <p>Protection: {armor.protection}</p>
             <p>Shield: {armor.shield}</p>
@@ -116,7 +123,7 @@ const ArmorShop = props => {
 
             <small>Created By: {armor.createdBy}</small>
 
-            <form onSubmit={event => props.addToCart(event, armor)}>
+            <form onSubmit={(event) => addToCart(event, armor)}>
               <Input
                 elementType={'number'}
                 elementConfig={armor.config.elementConfig}
@@ -124,7 +131,7 @@ const ArmorShop = props => {
                 invalid={!armor.config.valid}
                 touched={armor.config.touched}
                 hasValidation={armor.config.validation}
-                changed={event =>
+                changed={(event) =>
                   inputChangedHandler(event.target.value, armor.id)
                 }
               />
@@ -136,8 +143,6 @@ const ArmorShop = props => {
           </li>
         ))}
       </ul>
-
-      <p>Total: {totalArmor}</p>
     </Fragment>
   );
 };

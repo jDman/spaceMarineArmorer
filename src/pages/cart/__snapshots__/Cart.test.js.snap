@@ -43,6 +43,12 @@ Array [
     Items in cart: 
     1
   </p>,
+  <button
+    disabled={false}
+    onClick={[Function]}
+  >
+    Order Item(s)
+  </button>,
 ]
 `;
 
@@ -53,5 +59,11 @@ Array [
     Items in cart: 
     0
   </p>,
+  <button
+    disabled={true}
+    onClick={[Function]}
+  >
+    Order Item(s)
+  </button>,
 ]
 `;

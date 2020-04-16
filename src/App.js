@@ -17,7 +17,37 @@ function App() {
 
   const [isAuth, setAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [previousOrders, setPreviousOrders] = useState([]);
   const [generatedToken, setGeneratedToken] = useState();
+  const [showPreviousOrders, setShowPreviousOrders] = useState(false);
+
+  const getPreviousOrders = () => {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + generatedToken;
+    axios.defaults.headers.common['Content-Type'] = 'application/json';
+
+    return axios
+      .get('http://localhost:4000/shop/orders')
+      .then((result) => {
+        setPreviousOrders(result.data.orders);
+
+        return;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const showPreciousOrdersHandler = () => {
+    if (previousOrders.length) {
+      setShowPreviousOrders(true);
+    } else {
+      getPreviousOrders()
+        .then(() => {
+          setShowPreviousOrders(true);
+        })
+        .catch((err) => console.err(err));
+    }
+  };
 
   const addToCartHandler = (event, armor) => {
     event.preventDefault();
@@ -28,41 +58,40 @@ function App() {
     return axios
       .put('http://localhost:4000/shop/armor/cart', {
         armorId,
-        quantity
+        quantity,
       })
-      .then(result => {
-        console.log(result);
+      .then((result) => {
         return result;
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 
-  const deleteCartItemHandler = itemId => {
+  const deleteCartItemHandler = (itemId) => {
     return axios
       .delete(`http://localhost:4000/shop/armor/cart/item`, {
-        params: { itemId }
+        params: { itemId },
       })
-      .then(result => result.message)
-      .catch(err => console.log(err));
+      .then((result) => result.message)
+      .catch((err) => console.log(err));
   };
 
-  const loadingHandler = loadingValue => {
+  const loadingHandler = (loadingValue) => {
     setIsLoading(loadingValue);
   };
 
   const loginHandler = (event, { loading, loginFormIsValid, loginForm }) => {
     event.preventDefault();
 
-    loadingHandler(true);
+    setIsLoading(true);
 
     axios
       .post('http://localhost:4000/auth/login', {
         email: loginForm.email.value,
-        password: loginForm.password.value
+        password: loginForm.password.value,
       })
-      .then(result => {
+      .then((result) => {
         const remainingMilliseconds = 60 * 60 * 1000;
         const token = result.data.token;
 
@@ -77,16 +106,17 @@ function App() {
         setAuth(true);
         setGeneratedToken(token);
 
-        return;
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        axios.defaults.headers.common['Content-Type'] = 'application/json';
       })
       .then(() => {
-        history.replace('/shop');
+        history.replace('/');
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        loadingHandler(false);
+        setIsLoading(false);
       });
   };
 
@@ -109,12 +139,12 @@ function App() {
       .post('http://localhost:4000/auth/signup', {
         userName: signupForm.userName.value,
         email: signupForm.email.value,
-        password: signupForm.password.value
+        password: signupForm.password.value,
       })
-      .then(result => {
+      .then((result) => {
         history.replace('/login');
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       })
       .finally(() => {
@@ -122,13 +152,13 @@ function App() {
       });
   };
 
-  const orderItemsHandler = items => {
+  const orderItemsHandler = (items) => {
     return axios
       .post(`http://localhost:4000/shop/armor/order`, {
-        items
+        items,
       })
-      .then(result => result.message)
-      .catch(err => console.log(err));
+      .then((result) => result.message)
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -155,11 +185,11 @@ function App() {
       {isLoading ? <h1>Loading ...</h1> : null}
 
       <Switch>
-        <Route path="/admin" render={props => <ArmorAdmin />}></Route>
+        <Route path="/admin" render={(props) => <ArmorAdmin />}></Route>
 
         <Route
           path="/cart"
-          render={props => {
+          render={(props) => {
             if (generatedToken) {
               return (
                 <Cart
@@ -190,16 +220,48 @@ function App() {
 
         <Route
           path="/signup"
-          render={props => <Signup signup={signupHandler} />}
+          render={(props) => <Signup signup={signupHandler} />}
         ></Route>
 
         <Route
           path="/login"
-          render={props => <Login login={loginHandler} />}
+          render={(props) => <Login login={loginHandler} />}
         ></Route>
 
         <Route path="/">
-          <p>Home</p>
+          <h1>Welome to your local Space Marine Armory</h1>
+
+          {!showPreviousOrders ? (
+            <button onClick={() => showPreciousOrdersHandler()}>
+              View previous orders
+            </button>
+          ) : null}
+
+          {showPreviousOrders ? (
+            <section>
+              {previousOrders.length ? (
+                <Fragment>
+                  <ul>
+                    {previousOrders.map((order) => (
+                      <div key={order._id}>
+                        <h2>Previous orders</h2>
+                        <h3>Order ID: {order._id}</h3>
+
+                        {order.items.map((item) => (
+                          <li key={item.armor._id}>
+                            <h4>{item.armor.type}</h4>
+                          </li>
+                        ))}
+                      </div>
+                    ))}
+                  </ul>
+                  <button onClick={() => setShowPreviousOrders(false)}>
+                    Hide previous orders
+                  </button>
+                </Fragment>
+              ) : null}
+            </section>
+          ) : null}
         </Route>
 
         <Redirect to="/" />
