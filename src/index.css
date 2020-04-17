@@ -40,9 +40,10 @@ dd {
 /* Set core body defaults */
 body {
   font-family: ConnectionSerif, monospace;
+  font-kerning: none;
   box-sizing: border-box;
-  background-color: #040404;
-  color: #fefefe;
+  background-color: #000000;
+  color: #dbdbdb;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;

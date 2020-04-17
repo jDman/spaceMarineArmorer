@@ -1,7 +1,10 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Input from '../../components/form/input/Input';
+import Button from '../../components/button/Button';
+
+import classes from './ArmorShop.module.css';
 
 const ArmorShop = (props) => {
   const { token } = props;
@@ -28,6 +31,7 @@ const ArmorShop = (props) => {
       .then((result) => {
         const armors = result.data.armors.map((armor) => ({
           id: armor._id,
+          name: armor.name,
           type: armor.type,
           description: armor.description,
           company: armor.company,
@@ -107,43 +111,74 @@ const ArmorShop = (props) => {
   }, [getArmors, token]);
 
   return (
-    <Fragment>
-      <ul>
+    <section className={classes.ArmorShop}>
+      <ul className={classes.ArmorShopList}>
         {fetchedArmors.map((armor) => (
-          <li key={armor.id}>
-            <p>Type: {armor.type}</p>
-            <p>Description: {armor.description}</p>
-            <p>Company: {armor.company.trim().split('_').join(' ')}</p>
-            <p>Quality: {armor.quality}</p>
-            <p>Protection: {armor.protection}</p>
-            <p>Shield: {armor.shield}</p>
-            <p>Discount: {armor.discount}</p>
+          <li key={armor.id} className={classes.ArmorShopListItem}>
+            <div className={classes.ArmorShopListItemContainer}>
+              <p>
+                <strong>Name</strong>: {armor.name}
+              </p>
+              <p>
+                <strong>Type</strong>: {armor.type}
+              </p>
+              <p>
+                <strong>Description</strong>: {armor.description}
+              </p>
+              <p>
+                <strong>Company</strong>:{' '}
+                {armor.company.trim().split('_').join(' ')}
+              </p>
+              <p>
+                <strong>Quality</strong>: {armor.quality}
+              </p>
+              <p>
+                <strong>Protection</strong>: {armor.protection}
+              </p>
+              <p>
+                <strong>Shield</strong>: {armor.shield}
+              </p>
+              <p>
+                <strong>Discount</strong>: {armor.discount}
+              </p>
 
-            <p>Cost: {armor.cost}</p>
+              <p>
+                <strong>Cost</strong>: {armor.cost}
+              </p>
 
-            <small>Created By: {armor.createdBy}</small>
+              <small>Created By: {armor.createdBy}</small>
+            </div>
 
-            <form onSubmit={(event) => addToCart(event, armor)}>
-              <Input
-                elementType={'number'}
-                elementConfig={armor.config.elementConfig}
-                value={armor.config.value}
-                invalid={!armor.config.valid}
-                touched={armor.config.touched}
-                hasValidation={armor.config.validation}
-                changed={(event) =>
-                  inputChangedHandler(event.target.value, armor.id)
-                }
-              />
+            <div className={classes.ArmorShopListItemContainer}>
+              <form
+                onSubmit={(event) => addToCart(event, armor)}
+                className={classes.ArmorShopListForm}
+              >
+                <Input
+                  elementType={'number'}
+                  elementConfig={armor.config.elementConfig}
+                  value={armor.config.value}
+                  invalid={!armor.config.valid}
+                  touched={armor.config.touched}
+                  hasValidation={armor.config.validation}
+                  changed={(event) =>
+                    inputChangedHandler(event.target.value, armor.id)
+                  }
+                />
 
-              <button type="submit" disabled={!armor.config.valid}>
-                Add to Cart
-              </button>
-            </form>
+                <Button
+                  type="submit"
+                  classes={[classes.ArmorShopAddToCartButton]}
+                  disabled={!armor.config.valid}
+                  buttonText="Add to Cart"
+                  clickHandler={() => {}}
+                />
+              </form>
+            </div>
           </li>
         ))}
       </ul>
-    </Fragment>
+    </section>
   );
 };
 

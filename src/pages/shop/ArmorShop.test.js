@@ -10,9 +10,9 @@ describe('<ArmorShop />', () => {
   it('should render ArmorShop page with empty armor array returned from server', async () => {
     const result = {
       data: {
-        armor: [],
-        totalItems: 0
-      }
+        armors: [],
+        totalItems: 0,
+      },
     };
     const component = renderer.create(<ArmorShop />);
 
@@ -27,17 +27,18 @@ describe('<ArmorShop />', () => {
   it('should render ArmorShop page with results returned from server for armor', async () => {
     const result = {
       data: {
-        armor: [
+        armors: [
           {
             createdBy: {
               userId: '5e70dfb438cee83fd9e004fd',
-              userName: 'Freddy'
+              userName: 'Freddy',
             },
             stock: 5,
             shield: 50,
             discount: 30,
             _id: '5e941bab2c9afa63aa5cadb3',
             type: 'helmet',
+            name: 'test',
             cost: 200,
             protection: 'low',
             quality: 'low',
@@ -45,11 +46,11 @@ describe('<ArmorShop />', () => {
             company: 'starscape_systems',
             createdAt: '2020-04-13T07:58:35.164Z',
             updatedAt: '2020-04-13T07:58:35.164Z',
-            __v: 0
-          }
+            __v: 0,
+          },
         ],
-        totalItems: 1
-      }
+        totalItems: 1,
+      },
     };
     const component = renderer.create(<ArmorShop />);
 
@@ -64,17 +65,18 @@ describe('<ArmorShop />', () => {
   it('updates quantity form state on input change', async () => {
     const result = {
       data: {
-        armor: [
+        armors: [
           {
             createdBy: {
               userId: '5e70dfb438cee83fd9e004fd',
-              userName: 'Freddy'
+              userName: 'Freddy',
             },
             stock: 5,
             shield: 50,
             discount: 30,
             _id: '5e941bab2c9afa63aa5cadb3',
             type: 'helmet',
+            name: 'test',
             cost: 200,
             protection: 'low',
             quality: 'low',
@@ -82,11 +84,11 @@ describe('<ArmorShop />', () => {
             company: 'starscape_systems',
             createdAt: '2020-04-13T07:58:35.164Z',
             updatedAt: '2020-04-13T07:58:35.164Z',
-            __v: 0
-          }
+            __v: 0,
+          },
         ],
-        totalItems: 1
-      }
+        totalItems: 1,
+      },
     };
 
     const component = renderer.create(<ArmorShop />);

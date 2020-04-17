@@ -1,0 +1,31 @@
+.ArmorShop {
+  padding: 0.8rem;
+}
+
+.ArmorShopList {
+  list-style: none;
+}
+
+.ArmorShopListItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  padding: 0.6rem;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.ArmorShopListItemContainer {
+  flex: 1;
+}
+
+.ArmorShopListForm {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
+
+.ArmorShopAddToCartButton {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #04b6db;
+}

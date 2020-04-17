@@ -7,7 +7,7 @@ import classes from './Nav.module.css';
 
 function Nav(props) {
   const activeLingStyles = {
-    color: '#3300ff',
+    color: '#0900DB',
   };
 
   return (

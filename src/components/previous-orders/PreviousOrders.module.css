@@ -1,0 +1,44 @@
+.PreviousOrders {
+  list-style: none;
+}
+
+.PreviousOrdersHeading {
+  text-decoration: underline;
+}
+
+.PreviousOrdersListItem {
+  margin: 1rem 0;
+  padding: 0.4rem;
+  border: 2px solid #dbdbdb;
+  display: flex;
+  flex-direction: column;
+}
+
+.PreviousOrdersListItemHelmet {
+  color: #04b6db;
+}
+
+.PreviousOrdersListItemBody {
+  color: #ffb600;
+}
+
+.PreviousOrdersListItemArm {
+  color: #04db6d;
+}
+
+.PreviousOrdersListItemLeg {
+  color: #ff926d;
+}
+
+.PreviousOrdersListItemHeading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.PreviousOrdersButton {
+  width: 100%;
+  background-color: #04db6d;
+  color: #000000;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}

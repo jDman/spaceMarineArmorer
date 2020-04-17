@@ -15,7 +15,7 @@ exports[`<Nav /> renders Nav component with isAuth props 1`] = `
         onClick={[Function]}
         style={
           Object {
-            "color": "#3300ff",
+            "color": "#0900DB",
           }
         }
       >

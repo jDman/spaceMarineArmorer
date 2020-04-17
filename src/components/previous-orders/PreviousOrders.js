@@ -1,22 +1,67 @@
 import React, { Fragment } from 'react';
 
+import Button from '../button/Button';
+import classes from './PreviousOrders.module.css';
+
 const PreviousOrders = (props) => {
+  const orderItemTypeClasses = {
+    helmet: classes.PreviousOrdersListItemHelmet,
+    body: classes.PreviousOrdersListItemBody,
+    leg: classes.PreviousOrdersListItemLeg,
+    arm: classes.PreviousOrdersListItemArm,
+  };
+
   return (
     <Fragment>
-      <ul>
-        {props.previousOrders.map((order) => (
-          <div key={order._id}>
-            <h2>Previous orders</h2>
-            <h3>Order ID: {order._id}</h3>
+      {!props.showPreviousOrders ? (
+        <Button
+          classes={classes.PreviousOrdersButton}
+          clickHandler={() => props.showPreciousOrdersHandler(true)}
+          buttonText="View previous orders"
+        />
+      ) : (
+        <Button
+          classes={classes.PreviousOrdersButton}
+          clickHandler={() => props.showPreciousOrdersHandler(false)}
+          buttonText="Hide previous orders"
+        />
+      )}
 
-            {order.items.map((item) => (
-              <li key={item.armor._id}>
-                <h4>{item.armor.type}</h4>
-              </li>
-            ))}
-          </div>
-        ))}
-      </ul>
+      {props.showPreviousOrders ? (
+        <Fragment>
+          {props.previousOrders.length ? (
+            <Fragment>
+              <h2 className={classes.PreviousOrdersHeading}>Previous orders</h2>
+              <ul className={classes.PreviousOrders}>
+                {props.previousOrders.map((order) => (
+                  <div key={order._id}>
+                    <div className={classes.PreviousOrdersListItemHeading}>
+                      <h3>Order ID</h3>
+                      <span>{order._id}</span>
+                    </div>
+                    {order.items.map((item) => (
+                      <li
+                        key={item.armor._id}
+                        className={`${classes.PreviousOrdersListItem} ${
+                          orderItemTypeClasses[item.armor.type]
+                        }`}
+                      >
+                        <h4>{item.armor.name}</h4>
+                        <p>{item.armor.type}</p>
+                        <p>
+                          <small>{item.armor.cost}</small>
+                        </p>
+                      </li>
+                    ))}
+                  </div>
+                ))}
+              </ul>
+            </Fragment>
+          ) : (
+            <h2>No orders found.</h2>
+          )}
+        </Fragment>
+      ) : null}
     </Fragment>
   );
 };

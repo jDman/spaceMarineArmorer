@@ -3,7 +3,6 @@ import { Switch, Redirect, Route } from 'react-router-dom';
 import axios from 'axios';
 import { withRouter, useHistory } from 'react-router-dom';
 
-import './App.css';
 import Header from './components/global/header/Header';
 import Nav from './components/global/nav/Nav';
 import ArmorAdmin from './pages/admin/ArmorAdmin';
@@ -12,6 +11,8 @@ import Cart from './pages/cart/Cart';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 import PreviousOrders from './components/previous-orders/PreviousOrders';
+
+import classes from './App.module.css';
 
 function App() {
   let history = useHistory();
@@ -38,15 +39,11 @@ function App() {
       });
   };
 
-  const showPreciousOrdersHandler = () => {
-    if (previousOrders.length) {
-      setShowPreviousOrders(true);
-    } else {
-      getPreviousOrders()
-        .then(() => {
-          setShowPreviousOrders(true);
-        })
-        .catch((err) => console.err(err));
+  const showPreciousOrdersHandler = (shouldShow) => {
+    setShowPreviousOrders(shouldShow);
+
+    if (shouldShow && !previousOrders.length) {
+      getPreviousOrders();
     }
   };
 
@@ -158,7 +155,17 @@ function App() {
       .post(`http://localhost:4000/shop/armor/order`, {
         items,
       })
-      .then((result) => result.message)
+      .then((result) => {
+        const { order } = result.data;
+
+        console.log(order);
+
+        const updatedPreviousOrders = [...previousOrders];
+
+        updatedPreviousOrders.push(order);
+
+        setPreviousOrders(updatedPreviousOrders);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -178,7 +185,7 @@ function App() {
 
   return (
     <Fragment>
-      <div className="App">
+      <div className={classes.App}>
         <Header />
         <Nav isAuth={isAuth} logout={logoutHandler} />
       </div>
@@ -249,34 +256,20 @@ function App() {
             strict
             render={() => {
               return (
-                <Fragment>
+                <section className={classes.AppHomeSection}>
                   <h1>Welome to your local Space Marine Armory</h1>
-                  {!showPreviousOrders ? (
-                    <button onClick={() => showPreciousOrdersHandler()}>
-                      View previous orders
-                    </button>
-                  ) : (
-                    <button onClick={() => setShowPreviousOrders(false)}>
-                      Hide previous orders
-                    </button>
-                  )}
-
-                  {showPreviousOrders ? (
-                    <section>
-                      {previousOrders.length ? (
-                        <PreviousOrders previousOrders={previousOrders} />
-                      ) : (
-                        <h2>No orders found.</h2>
-                      )}
-                    </section>
-                  ) : null}
-                </Fragment>
+                  <PreviousOrders
+                    previousOrders={previousOrders}
+                    showPreviousOrders={showPreviousOrders}
+                    showPreciousOrdersHandler={showPreciousOrdersHandler}
+                  />
+                </section>
               );
             }}
           />
         ) : null}
 
-        <Redirect to="/login" exact strict />
+        <Redirect to="/" exact strict />
       </Switch>
     </Fragment>
   );
