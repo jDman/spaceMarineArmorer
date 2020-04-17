@@ -1,12 +1,14 @@
+@font-face {
+  font-family: 'ConnectionSerif';
+  src: local('ConnectionSerif'),
+    url(./fonts/ConnectionSerif.otf) format('truetype');
+}
+
 /* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: inherit;
-}
-
-body {
-  box-sizing: border-box;
 }
 
 /* Remove default padding */
@@ -37,9 +39,10 @@ dd {
 
 /* Set core body defaults */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: ConnectionSerif, monospace;
+  box-sizing: border-box;
+  background-color: #040404;
+  color: #fefefe;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;

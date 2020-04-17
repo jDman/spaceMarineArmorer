@@ -186,10 +186,17 @@ function App() {
       {isLoading ? <h1>Loading ...</h1> : null}
 
       <Switch>
-        <Route path="/admin" render={(props) => <ArmorAdmin />}></Route>
+        <Route
+          path="/admin"
+          exact
+          strict
+          render={(props) => <ArmorAdmin />}
+        ></Route>
 
         <Route
           path="/cart"
+          exact
+          strict
           render={(props) => {
             if (generatedToken) {
               return (
@@ -205,6 +212,8 @@ function App() {
 
         <Route
           path="/shop"
+          exact
+          strict
           render={() => {
             if (generatedToken) {
               return (
@@ -221,39 +230,53 @@ function App() {
 
         <Route
           path="/signup"
+          exact
+          strict
           render={(props) => <Signup signup={signupHandler} />}
         ></Route>
 
         <Route
           path="/login"
+          exact
+          strict
           render={(props) => <Login login={loginHandler} />}
         ></Route>
 
-        <Route path="/">
-          <h1>Welome to your local Space Marine Armory</h1>
+        {isAuth ? (
+          <Route
+            path="/"
+            exact
+            strict
+            render={() => {
+              return (
+                <Fragment>
+                  <h1>Welome to your local Space Marine Armory</h1>
+                  {!showPreviousOrders ? (
+                    <button onClick={() => showPreciousOrdersHandler()}>
+                      View previous orders
+                    </button>
+                  ) : (
+                    <button onClick={() => setShowPreviousOrders(false)}>
+                      Hide previous orders
+                    </button>
+                  )}
 
-          {!showPreviousOrders ? (
-            <button onClick={() => showPreciousOrdersHandler()}>
-              View previous orders
-            </button>
-          ) : (
-            <button onClick={() => setShowPreviousOrders(false)}>
-              Hide previous orders
-            </button>
-          )}
+                  {showPreviousOrders ? (
+                    <section>
+                      {previousOrders.length ? (
+                        <PreviousOrders previousOrders={previousOrders} />
+                      ) : (
+                        <h2>No orders found.</h2>
+                      )}
+                    </section>
+                  ) : null}
+                </Fragment>
+              );
+            }}
+          />
+        ) : null}
 
-          {showPreviousOrders ? (
-            <section>
-              {previousOrders.length ? (
-                <PreviousOrders previousOrders={previousOrders} />
-              ) : (
-                <h2>No orders found.</h2>
-              )}
-            </section>
-          ) : null}
-        </Route>
-
-        <Redirect to="/" />
+        <Redirect to="/login" exact strict />
       </Switch>
     </Fragment>
   );

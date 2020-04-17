@@ -2,41 +2,102 @@ import React, { Fragment } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import Button from '../../button/Button';
+import classes from './Nav.module.css';
+
 function Nav(props) {
+  const activeLingStyles = {
+    color: '#3300ff',
+  };
+
   return (
     <nav>
-      <ul className="navigation">
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
+      <ul className={classes.Navigation}>
+        {props.isAuth ? (
+          <li className={classes.NavigationListItem}>
+            <NavLink
+              to={'/'}
+              className={classes.NavigationLink}
+              exact
+              strict
+              activeStyle={activeLingStyles}
+            >
+              Home
+            </NavLink>
+          </li>
+        ) : null}
 
         {!props.isAuth && (
           <Fragment>
-            <li>
-              <NavLink to="/signup">Signup</NavLink>
+            <li className={classes.NavigationListItem}>
+              <NavLink
+                to="/signup"
+                className={classes.NavigationLink}
+                exact
+                strict
+                activeStyle={activeLingStyles}
+              >
+                Signup
+              </NavLink>
             </li>
-            <li>
-              <NavLink to="/login">Login</NavLink>
+            <li className={classes.NavigationListItem}>
+              <NavLink
+                to="/login"
+                className={classes.NavigationLink}
+                exact
+                strict
+                activeStyle={activeLingStyles}
+              >
+                Login
+              </NavLink>
             </li>
           </Fragment>
         )}
 
         {props.isAuth && (
           <Fragment>
-            <li>
-              <NavLink to="/admin">Admin</NavLink>
+            <li className={classes.NavigationListItem}>
+              <NavLink
+                to="/admin"
+                className={classes.NavigationLink}
+                exact
+                strict
+                activeStyle={activeLingStyles}
+              >
+                Admin
+              </NavLink>
             </li>
 
-            <li>
-              <NavLink to="/shop">Shop</NavLink>
+            <li className={classes.NavigationListItem}>
+              <NavLink
+                to="/shop"
+                className={classes.NavigationLink}
+                exact
+                strict
+                activeStyle={activeLingStyles}
+              >
+                Shop
+              </NavLink>
             </li>
 
-            <li>
-              <NavLink to="/cart">Cart</NavLink>
+            <li className={classes.NavigationListItem}>
+              <NavLink
+                to="/cart"
+                className={classes.NavigationLink}
+                exact
+                strict
+                activeStyle={activeLingStyles}
+              >
+                Cart
+              </NavLink>
             </li>
 
-            <li>
-              <button onClick={() => props.logout()}>Logout</button>
+            <li className={classes.NavigationListItem}>
+              <Button
+                classes={classes.NavigationLogoutButton}
+                clickHandler={() => props.logout()}
+                buttonText="Logout"
+              />
             </li>
           </Fragment>
         )}

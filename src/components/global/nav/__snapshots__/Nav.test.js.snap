@@ -3,49 +3,68 @@
 exports[`<Nav /> renders Nav component with isAuth props 1`] = `
 <nav>
   <ul
-    className="navigation"
+    className="Navigation"
   >
-    <li>
+    <li
+      className="NavigationListItem"
+    >
       <a
         aria-current="page"
-        className="active"
+        className="NavigationLink active"
         href="/"
         onClick={[Function]}
-        style={Object {}}
+        style={
+          Object {
+            "color": "#3300ff",
+          }
+        }
       >
         Home
       </a>
     </li>
-    <li>
+    <li
+      className="NavigationListItem"
+    >
       <a
         aria-current={null}
+        className="NavigationLink"
         href="/admin"
         onClick={[Function]}
       >
         Admin
       </a>
     </li>
-    <li>
+    <li
+      className="NavigationListItem"
+    >
       <a
         aria-current={null}
+        className="NavigationLink"
         href="/shop"
         onClick={[Function]}
       >
         Shop
       </a>
     </li>
-    <li>
+    <li
+      className="NavigationListItem"
+    >
       <a
         aria-current={null}
+        className="NavigationLink"
         href="/cart"
         onClick={[Function]}
       >
         Cart
       </a>
     </li>
-    <li>
+    <li
+      className="NavigationListItem"
+    >
       <button
+        className="NavigationLogoutButton"
         onClick={[Function]}
+        type="button"
       >
         Logout
       </button>
@@ -57,31 +76,26 @@ exports[`<Nav /> renders Nav component with isAuth props 1`] = `
 exports[`<Nav /> renders Nav component without isAuth props 1`] = `
 <nav>
   <ul
-    className="navigation"
+    className="Navigation"
   >
-    <li>
-      <a
-        aria-current="page"
-        className="active"
-        href="/"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        Home
-      </a>
-    </li>
-    <li>
+    <li
+      className="NavigationListItem"
+    >
       <a
         aria-current={null}
+        className="NavigationLink"
         href="/signup"
         onClick={[Function]}
       >
         Signup
       </a>
     </li>
-    <li>
+    <li
+      className="NavigationListItem"
+    >
       <a
         aria-current={null}
+        className="NavigationLink"
         href="/login"
         onClick={[Function]}
       >

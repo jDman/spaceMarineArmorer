@@ -12,33 +12,33 @@ Array [
     </header>
     <nav>
       <ul
-        className="navigation"
+        className="Navigation"
       >
-        <li>
-          <a
-            aria-current="page"
-            className="active"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
-          >
-            Home
-          </a>
-        </li>
-        <li>
+        <li
+          className="NavigationListItem"
+        >
           <a
             aria-current={null}
+            className="NavigationLink"
             href="/signup"
             onClick={[Function]}
           >
             Signup
           </a>
         </li>
-        <li>
+        <li
+          className="NavigationListItem"
+        >
           <a
-            aria-current={null}
+            aria-current="page"
+            className="NavigationLink active"
             href="/login"
             onClick={[Function]}
+            style={
+              Object {
+                "color": "#3300ff",
+              }
+            }
           >
             Login
           </a>
@@ -46,13 +46,54 @@ Array [
       </ul>
     </nav>
   </div>,
-  <h1>
-    Welome to your local Space Marine Armory
-  </h1>,
-  <button
-    onClick={[Function]}
+  <section
+    className="auth-form"
   >
-    View previous orders
-  </button>,
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="Input"
+      >
+        <label
+          className="Label"
+        >
+          email
+        </label>
+        <input
+          className="InputElement"
+          name="email"
+          onChange={[Function]}
+          placeholder="you@email.com"
+          required={true}
+          type="email"
+          value=""
+        />
+      </div>
+      <div
+        className="Input"
+      >
+        <label
+          className="Label"
+        >
+          password
+        </label>
+        <input
+          className="InputElement"
+          name="password"
+          onChange={[Function]}
+          placeholder="Enter you password..."
+          required={true}
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+  </section>,
 ]
 `;

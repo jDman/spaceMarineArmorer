@@ -1,0 +1,23 @@
+.Navigation {
+  display: inline-flex;
+  align-items: center;
+}
+
+.NavigationListItem {
+  margin-left: 0.6rem;
+  padding: 0.2rem;
+}
+
+.NavigationLink,
+.NavigationLink:link,
+.NavigationLink:active,
+.NavigationLink:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.NavigationLogoutButton {
+  background-color: #ff0033;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
