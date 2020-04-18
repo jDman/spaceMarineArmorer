@@ -1,4 +1,18 @@
-.AddArmorButton {
+.ArmorAdmin {
+  padding: 0.8rem;
+}
+
+.ArmorAdminAddArmorButton {
+  color: #000000;
+  background-color: #04db6d;
   padding: 0.2rem;
-  text-align: center;
+  margin-top: 1rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.ArmorAdminAddArmorButtonDisabled {
+  background-color: #dbdbdb;
+  color: #000000;
+  cursor: not-allowed;
 }

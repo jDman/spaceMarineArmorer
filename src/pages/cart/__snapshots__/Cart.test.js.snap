@@ -1,16 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Cart /> should render Cart page with cart items array returned from server 1`] = `
-Array [
-  <ul>
-    <li>
-      <h3>
-        helmet
-         
-        <span>
+<section
+  className="Cart"
+>
+  <ul
+    className="CartItemList"
+  >
+    <li
+      className="CartItem"
+    >
+      <div>
+        <h3
+          className="CartItemDetail"
+        >
+          helmet
+           Armor Type
+        </h3>
+        <p
+          className="CartItemDetail"
+        >
           Total price: 
           600
-        </span>
+        </p>
         <div
           className="Input"
         >
@@ -31,39 +43,51 @@ Array [
           />
         </div>
         <button
+          className="CartItemDeleteButton"
           onClick={[Function]}
           type="button"
         >
           Delete
         </button>
-      </h3>
+      </div>
     </li>
-  </ul>,
-  <p>
+  </ul>
+  <p
+    className="CartItemsInCounter"
+  >
     Items in cart: 
     1
-  </p>,
+  </p>
   <button
-    disabled={false}
+    className="CartOrderButton"
     onClick={[Function]}
+    type="button"
   >
     Order Item(s)
-  </button>,
-]
+  </button>
+</section>
 `;
 
 exports[`<Cart /> should render Cart page with empty cart items array returned from server 1`] = `
-Array [
-  <ul />,
-  <p>
+<section
+  className="Cart"
+>
+  <ul
+    className="CartItemList"
+  />
+  <p
+    className="CartItemsInCounter"
+  >
     Items in cart: 
     0
-  </p>,
+  </p>
   <button
+    className="CartOrderButton CartOrderButtonDisabled"
     disabled={true}
     onClick={[Function]}
+    type="button"
   >
     Order Item(s)
-  </button>,
-]
+  </button>
+</section>
 `;

@@ -281,7 +281,8 @@ class ArmorAdmin extends Component {
     }
 
     return (
-      <section>
+      <section className={classes.ArmorAdmin}>
+        <h1>Add an Armor</h1>
         <form onSubmit={(event) => this.addArmor(event)}>
           {armorDetailsFormElements.map((formElement) => (
             <Input
@@ -297,14 +298,19 @@ class ArmorAdmin extends Component {
               }
             />
           ))}
-          <div className={classes.AddArmorButton}>
-            <Button
-              type="submit"
-              disabled={!this.state.armorDetailsFormIsValid}
-              buttonText="Add"
-              clickHandler={() => {}}
-            />
-          </div>
+          <Button
+            type="submit"
+            classes={
+              !this.state.armorDetailsFormIsValid
+                ? [
+                    classes.ArmorAdminAddArmorButton,
+                    classes.ArmorAdminAddArmorButtonDisabled,
+                  ]
+                : classes.ArmorAdminAddArmorButton
+            }
+            disabled={!this.state.armorDetailsFormIsValid}
+            buttonText="Add Armor"
+          />
         </form>
       </section>
     );

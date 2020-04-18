@@ -2,7 +2,7 @@
 
 exports[`<Login /> renders Login page 1`] = `
 <section
-  className="auth-form"
+  className="Auth"
 >
   <form
     onSubmit={[Function]}
@@ -44,6 +44,9 @@ exports[`<Login /> renders Login page 1`] = `
       />
     </div>
     <button
+      className="LoginFormButton LoginFormButtonDisabled"
+      disabled={true}
+      onClick={[Function]}
       type="submit"
     >
       Login
@@ -54,7 +57,7 @@ exports[`<Login /> renders Login page 1`] = `
 
 exports[`<Login /> updates email form state on input change 1`] = `
 <section
-  className="auth-form"
+  className="Auth"
 >
   <form
     onSubmit={[Function]}
@@ -96,6 +99,9 @@ exports[`<Login /> updates email form state on input change 1`] = `
       />
     </div>
     <button
+      className="LoginFormButton LoginFormButtonDisabled"
+      disabled={true}
+      onClick={[Function]}
       type="submit"
     >
       Login
@@ -106,7 +112,7 @@ exports[`<Login /> updates email form state on input change 1`] = `
 
 exports[`<Login /> updates password form state on input change 1`] = `
 <section
-  className="auth-form"
+  className="Auth"
 >
   <form
     onSubmit={[Function]}
@@ -148,6 +154,9 @@ exports[`<Login /> updates password form state on input change 1`] = `
       />
     </div>
     <button
+      className="LoginFormButton LoginFormButtonDisabled"
+      disabled={true}
+      onClick={[Function]}
       type="submit"
     >
       Login

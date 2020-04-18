@@ -15,7 +15,9 @@ const Button = (props) => {
         type={type}
         className={classString}
         disabled={props.disabled || props.loading}
-        onClick={(event) => props.clickHandler(event)}
+        onClick={(event) =>
+          props.clickHandler ? props.clickHandler(event) : () => {}
+        }
       >
         {props.buttonText}
       </button>

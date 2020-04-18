@@ -47,7 +47,7 @@ Array [
     </nav>
   </div>,
   <section
-    className="auth-form"
+    className="Auth"
   >
     <form
       onSubmit={[Function]}
@@ -89,6 +89,9 @@ Array [
         />
       </div>
       <button
+        className="LoginFormButton LoginFormButtonDisabled"
+        disabled={true}
+        onClick={[Function]}
         type="submit"
       >
         Login

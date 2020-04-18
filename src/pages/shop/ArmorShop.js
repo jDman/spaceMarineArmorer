@@ -171,7 +171,6 @@ const ArmorShop = (props) => {
                   classes={[classes.ArmorShopAddToCartButton]}
                   disabled={!armor.config.valid}
                   buttonText="Add to Cart"
-                  clickHandler={() => {}}
                 />
               </form>
             </div>

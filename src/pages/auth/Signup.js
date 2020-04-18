@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 import Auth from './Auth';
 import Input from '../../components/form/input/Input';
+import Button from '../../components/button/Button';
+
+import classes from './Signup.module.css';
 
 class Signup extends Component {
   state = {
     loading: false,
-    signupFormIsValid: true,
+    signupFormIsValid: false,
     signupForm: {
       userName: {
         elementType: 'input',
@@ -14,12 +17,12 @@ class Signup extends Component {
           type: 'text',
           name: 'userName',
           placeholder: 'Your username here...',
-          required: true
+          required: true,
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
+        touched: false,
       },
       email: {
         elementType: 'input',
@@ -27,12 +30,12 @@ class Signup extends Component {
           type: 'email',
           name: 'email',
           placeholder: 'you@email.com',
-          required: true
+          required: true,
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
+        touched: false,
       },
       password: {
         elementType: 'input',
@@ -40,19 +43,19 @@ class Signup extends Component {
           type: 'password',
           name: 'password',
           placeholder: 'Enter you password...',
-          required: true
+          required: true,
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
-      }
-    }
+        touched: false,
+      },
+    },
   };
 
   inputChangedHandler(event, identifier) {
     const updatedSignupForm = {
-      ...this.state.signupForm
+      ...this.state.signupForm,
     };
 
     const updatedSignupDetail = { ...updatedSignupForm[identifier] };
@@ -83,7 +86,7 @@ class Signup extends Component {
 
     this.setState({
       signupForm: updatedSignupForm,
-      signupFormIsValid: formIsValid
+      signupFormIsValid: formIsValid,
     });
   }
 
@@ -114,14 +117,14 @@ class Signup extends Component {
     for (let key in signupForm) {
       signupFormElements.push({
         id: key,
-        config: signupForm[key]
+        config: signupForm[key],
       });
     }
 
     return (
       <Auth>
-        <form onSubmit={event => this.props.signup(event, this.state)}>
-          {signupFormElements.map(formElement => {
+        <form onSubmit={(event) => this.props.signup(event, this.state)}>
+          {signupFormElements.map((formElement) => {
             return (
               <Input
                 key={formElement.id}
@@ -131,13 +134,22 @@ class Signup extends Component {
                 invalid={!formElement.config.valid}
                 touched={formElement.config.touched}
                 hasValidation={formElement.config.validation}
-                changed={event =>
+                changed={(event) =>
                   this.inputChangedHandler(event, formElement.id)
                 }
               />
             );
           })}
-          <button type="submit">Signup</button>
+          <Button
+            type="submit"
+            classes={
+              !this.state.signupFormIsValid
+                ? [classes.SignupFormButton, classes.SignupFormButtonDisabled]
+                : classes.SignupFormButton
+            }
+            buttonText="Signup"
+            disabled={!this.state.signupFormIsValid}
+          />
         </form>
       </Auth>
     );

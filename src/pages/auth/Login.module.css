@@ -1,0 +1,12 @@
+.LoginFormButton {
+  margin: 1rem 0;
+  width: 100%;
+  background-color: #04b6db;
+  cursor: pointer;
+}
+
+.LoginFormButtonDisabled {
+  background-color: #dbdbdb;
+  color: #000000;
+  cursor: not-allowed;
+}

@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Auth = props => {
-  return <section className="auth-form">{props.children}</section>;
+import classes from './Auth.module.css';
+
+const Auth = (props) => {
+  return <section className={classes.Auth}>{props.children}</section>;
 };
 
 export default Auth;

@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 import Auth from './Auth';
 import Input from '../../components/form/input/Input';
+import Button from '../../components/button/Button';
+
+import classes from './Login.module.css';
 
 class Login extends Component {
   state = {
     loading: false,
-    loginFormIsValid: true,
+    loginFormIsValid: false,
     loginForm: {
       email: {
         elementType: 'input',
@@ -14,12 +17,12 @@ class Login extends Component {
           type: 'email',
           name: 'email',
           placeholder: 'you@email.com',
-          required: true
+          required: true,
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
+        touched: false,
       },
       password: {
         elementType: 'input',
@@ -27,19 +30,19 @@ class Login extends Component {
           type: 'password',
           name: 'password',
           placeholder: 'Enter you password...',
-          required: true
+          required: true,
         },
         value: '',
         valid: false,
         validation: { required: true },
-        touched: false
-      }
-    }
+        touched: false,
+      },
+    },
   };
 
   inputChangedHandler(event, identifier) {
     const updatedLoginForm = {
-      ...this.state.loginForm
+      ...this.state.loginForm,
     };
 
     const updatedLoginDetail = { ...updatedLoginForm[identifier] };
@@ -70,7 +73,7 @@ class Login extends Component {
 
     this.setState({
       loginForm: updatedLoginForm,
-      loginFormIsValid: formIsValid
+      loginFormIsValid: formIsValid,
     });
   }
 
@@ -101,14 +104,14 @@ class Login extends Component {
     for (let key in loginForm) {
       loginFormElements.push({
         id: key,
-        config: loginForm[key]
+        config: loginForm[key],
       });
     }
 
     return (
       <Auth>
-        <form onSubmit={event => this.props.login(event, this.state)}>
-          {loginFormElements.map(formElement => {
+        <form onSubmit={(event) => this.props.login(event, this.state)}>
+          {loginFormElements.map((formElement) => {
             return (
               <Input
                 key={formElement.id}
@@ -118,14 +121,23 @@ class Login extends Component {
                 invalid={!formElement.config.valid}
                 touched={formElement.config.touched}
                 hasValidation={formElement.config.validation}
-                changed={event =>
+                changed={(event) =>
                   this.inputChangedHandler(event, formElement.id)
                 }
               />
             );
           })}
 
-          <button type="submit">Login</button>
+          <Button
+            type="submit"
+            buttonText="Login"
+            classes={
+              !this.state.loginFormIsValid
+                ? [classes.LoginFormButton, classes.LoginFormButtonDisabled]
+                : classes.LoginFormButton
+            }
+            disabled={!this.state.loginFormIsValid}
+          />
         </form>
       </Auth>
     );

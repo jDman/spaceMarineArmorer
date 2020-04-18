@@ -1,0 +1,12 @@
+.SignupFormButton {
+  margin: 1rem 0;
+  width: 100%;
+  color: #000000;
+  background-color: #04db6d;
+  cursor: pointer;
+}
+
+.SignupFormButtonDisabled {
+  background-color: #dbdbdb;
+  cursor: not-allowed;
+}

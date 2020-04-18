@@ -1,10 +1,13 @@
 .Input {
+  margin: 1rem 0;
   width: 100%;
   box-sizing: border-box;
 }
 
 .Label {
+  color: #ffb600;
   font-weight: bold;
+  text-transform: capitalize;
   display: block;
   margin-bottom: 8px;
 }

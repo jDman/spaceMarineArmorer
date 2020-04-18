@@ -1,7 +1,10 @@
-import React, { Fragment, useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
+import Button from '../../components/button/Button';
 import Input from '../../components/form/input/Input';
+
+import classes from './Cart.module.css';
 
 const Cart = (props) => {
   const token = props.token;
@@ -84,12 +87,15 @@ const Cart = (props) => {
   }, [getCart, token]);
 
   return (
-    <Fragment>
-      <ul>
+    <section className={classes.Cart}>
+      <ul className={classes.CartItemList}>
         {usersCartItems.map((item) => (
-          <li key={item.armor._id}>
-            <h3>
-              {item.type} <span>Total price: {item.totalCost}</span>
+          <li key={item.armor._id} className={classes.CartItem}>
+            <div>
+              <h3 className={classes.CartItemDetail}>{item.type} Armor Type</h3>
+              <p className={classes.CartItemDetail}>
+                Total price: {item.totalCost}
+              </p>
               <Input
                 elementType={'number'}
                 elementConfig={item.config.elementConfig}
@@ -101,20 +107,31 @@ const Cart = (props) => {
                   inputChangedHandler(event.target.value, item.armor._id)
                 }
               />
-              <button type="button" onClick={() => deleteCartItem(item.itemId)}>
-                Delete
-              </button>
-            </h3>
+              <Button
+                buttonText="Delete"
+                classes={classes.CartItemDeleteButton}
+                clickHandler={() => deleteCartItem(item.itemId)}
+              />
+            </div>
           </li>
         ))}
       </ul>
 
-      <p>Items in cart: {usersCartItemsNumber}</p>
+      <p className={classes.CartItemsInCounter}>
+        Items in cart: {usersCartItemsNumber}
+      </p>
 
-      <button onClick={() => orderItems(usersCartItems)} disabled={!canOrder}>
-        Order Item(s)
-      </button>
-    </Fragment>
+      <Button
+        buttonText="Order Item(s)"
+        classes={
+          !canOrder
+            ? [classes.CartOrderButton, classes.CartOrderButtonDisabled]
+            : classes.CartOrderButton
+        }
+        clickHandler={() => orderItems(usersCartItems)}
+        disabled={!canOrder}
+      />
+    </section>
   );
 };
 

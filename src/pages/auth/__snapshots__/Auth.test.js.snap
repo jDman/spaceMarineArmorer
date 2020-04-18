@@ -2,7 +2,7 @@
 
 exports[`<Auth /> renders Auth component and children 1`] = `
 <section
-  className="auth-form"
+  className="Auth"
 >
   <p>
     Tested

@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
-<section>
+<section
+  className="ArmorAdmin"
+>
+  <h1>
+    Add an Armor
+  </h1>
   <form
     onSubmit={[Function]}
   >
@@ -255,18 +260,14 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
         </option>
       </select>
     </div>
-    <div
-      className="AddArmorButton"
+    <button
+      className="ArmorAdminAddArmorButton ArmorAdminAddArmorButtonDisabled"
+      disabled={true}
+      onClick={[Function]}
+      type="submit"
     >
-      <button
-        className=""
-        disabled={true}
-        onClick={[Function]}
-        type="submit"
-      >
-        Add
-      </button>
-    </div>
+      Add Armor
+    </button>
   </form>
 </section>
 `;
