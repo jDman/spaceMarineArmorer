@@ -256,7 +256,7 @@ exports[`<ArmorAdmin /> renders ArmorAdmin page component 1`] = `
       </select>
     </div>
     <div
-      className="SubmitFormButton"
+      className="AddArmorButton"
     >
       <button
         className=""

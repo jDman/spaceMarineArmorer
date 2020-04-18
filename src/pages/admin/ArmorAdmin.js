@@ -297,7 +297,7 @@ class ArmorAdmin extends Component {
               }
             />
           ))}
-          <div className={classes.SubmitFormButton}>
+          <div className={classes.AddArmorButton}>
             <Button
               type="submit"
               disabled={!this.state.armorDetailsFormIsValid}
