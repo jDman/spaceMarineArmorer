@@ -12,7 +12,7 @@ const PreviousOrders = (props) => {
   };
 
   return (
-    <Fragment>
+    <div className={classes.PreviousOrders}>
       {!props.showPreviousOrders ? (
         <Button
           classes={classes.PreviousOrdersButton}
@@ -47,9 +47,9 @@ const PreviousOrders = (props) => {
                         }`}
                       >
                         <h4>{item.armor.name}</h4>
-                        <p>{item.armor.type}</p>
+                        <p>Type {item.armor.type}</p>
                         <p>
-                          <small>{item.armor.cost}</small>
+                          Cost <small>{item.armor.cost}</small>
                         </p>
                       </li>
                     ))}
@@ -62,7 +62,7 @@ const PreviousOrders = (props) => {
           )}
         </Fragment>
       ) : null}
-    </Fragment>
+    </div>
   );
 };
 

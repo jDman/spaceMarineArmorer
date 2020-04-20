@@ -10,7 +10,8 @@ describe('<Pagination />', () => {
       <Pagination
         hasPrevPage={true}
         hasNextPage={true}
-        currentPage={1}
+        currentPage={2}
+        lastPage={3}
         nextClickHandler={() => {}}
         prevClickHandler={() => {}}
       />
@@ -24,7 +25,8 @@ describe('<Pagination />', () => {
       <Pagination
         hasPrevPage={true}
         hasNextPage={false}
-        currentPage={1}
+        currentPage={2}
+        lastPage={2}
         nextClickHandler={() => {}}
         prevClickHandler={() => {}}
       />
@@ -39,6 +41,7 @@ describe('<Pagination />', () => {
         hasPrevPage={false}
         hasNextPage={true}
         currentPage={1}
+        lastPage={2}
         nextClickHandler={() => {}}
         prevClickHandler={() => {}}
       />

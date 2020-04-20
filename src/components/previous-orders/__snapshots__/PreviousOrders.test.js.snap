@@ -1,11 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<PreviousOrders /> should render component and display list of previous orders 1`] = `
-<button
-  className="PreviousOrdersButton"
-  onClick={[Function]}
-  type="button"
+<div
+  className="PreviousOrders"
 >
-  View previous orders
-</button>
+  <button
+    className="PreviousOrdersButton"
+    onClick={[Function]}
+    type="button"
+  >
+    View previous orders
+  </button>
+</div>
 `;

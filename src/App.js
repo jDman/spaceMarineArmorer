@@ -24,12 +24,13 @@ function App() {
   const [hasNextOrdersPage, setHasNextOrdersPage] = useState(false);
   const [hasPreviousOrdersPage, setHasPreviousOrdersPage] = useState(false);
   const [lastOrdersPage, setLastOrdersPage] = useState(false);
+  const [totalOrders, setTotalOrders] = useState(0);
   const [generatedToken, setGeneratedToken] = useState();
   const [showPreviousOrders, setShowPreviousOrders] = useState(false);
   const [currentOrdersPage, setCurrentOrdersPage] = useState(1);
+  const [chosenOrdersPerPage, setChosenOrdersPerPage] = useState(5);
 
-  const getPreviousOrders = (orderParams) => {
-    const params = orderParams || {};
+  const getPreviousOrders = (params) => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + generatedToken;
     axios.defaults.headers.common['Content-Type'] = 'application/json';
 
@@ -41,8 +42,6 @@ function App() {
           hasPrevPage,
           hasNextPage,
           lastPage,
-          nextPage,
-          prevPage,
           totalItems,
         } = result.data;
 
@@ -50,6 +49,7 @@ function App() {
         setHasPreviousOrdersPage(hasPrevPage);
         setHasNextOrdersPage(hasNextPage);
         setLastOrdersPage(lastPage);
+        setTotalOrders(totalItems);
 
         return;
       })
@@ -62,7 +62,10 @@ function App() {
     setShowPreviousOrders(shouldShow);
 
     if (shouldShow && !previousOrders.length) {
-      getPreviousOrders({ page: 1, perPage: 2 });
+      getPreviousOrders({
+        page: currentOrdersPage,
+        perPage: chosenOrdersPerPage,
+      });
     }
   };
 
@@ -75,7 +78,10 @@ function App() {
 
     setCurrentOrdersPage(previousPage);
 
-    getPreviousOrders({ page: previousPage, perPage: 2 });
+    getPreviousOrders({
+      page: previousPage,
+      perPage: chosenOrdersPerPage,
+    });
   };
 
   const getNextOrdersHandler = (page) => {
@@ -87,7 +93,10 @@ function App() {
 
     setCurrentOrdersPage(nextPage);
 
-    getPreviousOrders({ page: nextPage, perPage: 2 });
+    getPreviousOrders({
+      page: nextPage,
+      perPage: chosenOrdersPerPage,
+    });
   };
 
   const addToCartHandler = (event, armor) => {
@@ -199,13 +208,10 @@ function App() {
         items,
       })
       .then((result) => {
-        const { order } = result.data;
-
-        const updatedPreviousOrders = [...previousOrders];
-
-        updatedPreviousOrders.push(order);
-
-        setPreviousOrders(updatedPreviousOrders);
+        getPreviousOrders({
+          page: currentOrdersPage,
+          perPage: chosenOrdersPerPage,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -223,6 +229,13 @@ function App() {
     setAuth(true);
     setGeneratedToken(token);
   }, [logoutHandler]);
+
+  const orderItemsPerPageHandler = (itemNumber) => {
+    setCurrentOrdersPage(1);
+    setChosenOrdersPerPage(itemNumber);
+
+    getPreviousOrders({ page: 1, perPage: itemNumber });
+  };
 
   return (
     <Fragment>
@@ -305,14 +318,17 @@ function App() {
                       showPreviousOrdersHandler={showPreviousOrdersHandler}
                       showPreviousOrders={showPreviousOrders}
                       previousOrders={previousOrders}
+                      total={totalOrders}
                     />
                     {showPreviousOrders ? (
                       <Pagination
                         prevClickHandler={getPreviousOrdersHandler}
                         currentPage={currentOrdersPage}
+                        lastPage={lastOrdersPage}
                         nextClickHandler={getNextOrdersHandler}
                         hasPrevPage={hasPreviousOrdersPage}
                         hasNextPage={hasNextOrdersPage}
+                        perPageHandler={orderItemsPerPageHandler}
                       />
                     ) : null}
                   </Fragment>

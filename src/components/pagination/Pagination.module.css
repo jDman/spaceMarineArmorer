@@ -4,7 +4,11 @@
   margin: 1rem 0;
 }
 
-.PaginationButton {
+.PaginationButtonContainer {
   width: 8rem;
+}
+
+.PaginationButton {
+  width: 100%;
   color: #000000;
 }
