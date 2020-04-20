@@ -1,0 +1,10 @@
+.Pagination {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.PaginationButton {
+  width: 8rem;
+  color: #000000;
+}

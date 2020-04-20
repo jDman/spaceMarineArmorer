@@ -11,6 +11,7 @@ import Cart from './pages/cart/Cart';
 import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 import PreviousOrders from './components/previous-orders/PreviousOrders';
+import Pagination from './components/pagination/Pagination';
 
 import classes from './App.module.css';
 
@@ -20,17 +21,35 @@ function App() {
   const [isAuth, setAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [previousOrders, setPreviousOrders] = useState([]);
+  const [hasNextOrdersPage, setHasNextOrdersPage] = useState(false);
+  const [hasPreviousOrdersPage, setHasPreviousOrdersPage] = useState(false);
+  const [lastOrdersPage, setLastOrdersPage] = useState(false);
   const [generatedToken, setGeneratedToken] = useState();
   const [showPreviousOrders, setShowPreviousOrders] = useState(false);
+  const [currentOrdersPage, setCurrentOrdersPage] = useState(1);
 
-  const getPreviousOrders = () => {
+  const getPreviousOrders = (orderParams) => {
+    const params = orderParams || {};
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + generatedToken;
     axios.defaults.headers.common['Content-Type'] = 'application/json';
 
     return axios
-      .get('http://localhost:4000/shop/orders')
+      .get('http://localhost:4000/shop/orders', { params })
       .then((result) => {
-        setPreviousOrders(result.data.orders);
+        const {
+          orders,
+          hasPrevPage,
+          hasNextPage,
+          lastPage,
+          nextPage,
+          prevPage,
+          totalItems,
+        } = result.data;
+
+        setPreviousOrders(orders);
+        setHasPreviousOrdersPage(hasPrevPage);
+        setHasNextOrdersPage(hasNextPage);
+        setLastOrdersPage(lastPage);
 
         return;
       })
@@ -39,12 +58,36 @@ function App() {
       });
   };
 
-  const showPreciousOrdersHandler = (shouldShow) => {
+  const showPreviousOrdersHandler = (shouldShow) => {
     setShowPreviousOrders(shouldShow);
 
     if (shouldShow && !previousOrders.length) {
-      getPreviousOrders();
+      getPreviousOrders({ page: 1, perPage: 2 });
     }
+  };
+
+  const getPreviousOrdersHandler = (page) => {
+    const previousPage = page - 1;
+
+    if (!hasPreviousOrdersPage) {
+      return;
+    }
+
+    setCurrentOrdersPage(previousPage);
+
+    getPreviousOrders({ page: previousPage, perPage: 2 });
+  };
+
+  const getNextOrdersHandler = (page) => {
+    const nextPage = page + 1;
+
+    if (!hasNextOrdersPage) {
+      return;
+    }
+
+    setCurrentOrdersPage(nextPage);
+
+    getPreviousOrders({ page: nextPage, perPage: 2 });
   };
 
   const addToCartHandler = (event, armor) => {
@@ -158,8 +201,6 @@ function App() {
       .then((result) => {
         const { order } = result.data;
 
-        console.log(order);
-
         const updatedPreviousOrders = [...previousOrders];
 
         updatedPreviousOrders.push(order);
@@ -258,11 +299,23 @@ function App() {
               return (
                 <section className={classes.AppHomeSection}>
                   <h1>Welome to your local Space Marine Armory</h1>
-                  <PreviousOrders
-                    previousOrders={previousOrders}
-                    showPreviousOrders={showPreviousOrders}
-                    showPreciousOrdersHandler={showPreciousOrdersHandler}
-                  />
+
+                  <Fragment>
+                    <PreviousOrders
+                      showPreviousOrdersHandler={showPreviousOrdersHandler}
+                      showPreviousOrders={showPreviousOrders}
+                      previousOrders={previousOrders}
+                    />
+                    {showPreviousOrders ? (
+                      <Pagination
+                        prevClickHandler={getPreviousOrdersHandler}
+                        currentPage={currentOrdersPage}
+                        nextClickHandler={getNextOrdersHandler}
+                        hasPrevPage={hasPreviousOrdersPage}
+                        hasNextPage={hasNextOrdersPage}
+                      />
+                    ) : null}
+                  </Fragment>
                 </section>
               );
             }}

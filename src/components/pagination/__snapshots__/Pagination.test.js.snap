@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Pagination /> should render with both hasPrevPage and hasNextPage 1`] = `
+<div
+  className="Pagination"
+>
+  <button
+    className="PaginationButton"
+    onClick={[Function]}
+    type="button"
+  >
+    previous
+  </button>
+  <p>
+    Page 
+    1
+  </p>
+  <button
+    className="PaginationButton"
+    onClick={[Function]}
+    type="button"
+  >
+    next
+  </button>
+</div>
+`;
+
+exports[`<Pagination /> should render with just hasNextPage 1`] = `
+<div
+  className="Pagination"
+>
+  <p>
+    Page 
+    1
+  </p>
+  <button
+    className="PaginationButton"
+    onClick={[Function]}
+    type="button"
+  >
+    next
+  </button>
+</div>
+`;
+
+exports[`<Pagination /> should render with just hasPrevPage 1`] = `
+<div
+  className="Pagination"
+>
+  <button
+    className="PaginationButton"
+    onClick={[Function]}
+    type="button"
+  >
+    previous
+  </button>
+  <p>
+    Page 
+    1
+  </p>
+</div>
+`;

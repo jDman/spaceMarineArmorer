@@ -16,13 +16,13 @@ const PreviousOrders = (props) => {
       {!props.showPreviousOrders ? (
         <Button
           classes={classes.PreviousOrdersButton}
-          clickHandler={() => props.showPreciousOrdersHandler(true)}
+          clickHandler={() => props.showPreviousOrdersHandler(true)}
           buttonText="View previous orders"
         />
       ) : (
         <Button
           classes={classes.PreviousOrdersButton}
-          clickHandler={() => props.showPreciousOrdersHandler(false)}
+          clickHandler={() => props.showPreviousOrdersHandler(false)}
           buttonText="Hide previous orders"
         />
       )}
