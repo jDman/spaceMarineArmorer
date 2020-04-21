@@ -1,5 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Input /> renders Input component and hides its label with the hideLabel prop is true 1`] = `
+<div
+  className="Input"
+>
+  <input
+    className="InputElement"
+    name="testText"
+    placeholder="This test is..."
+    required={true}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`<Input /> renders Input component and is disabled when disabled prop is passed 1`] = `
+<div
+  className="Input"
+>
+  <label
+    className="Label"
+  >
+    testText
+  </label>
+  <input
+    className="InputElement"
+    disabled={true}
+    name="testText"
+    placeholder="This test is..."
+    required={true}
+    type="text"
+    value=""
+  />
+</div>
+`;
+
 exports[`<Input /> renders Input component with props passed in for elementType input number 1`] = `
 <div
   className="Input"

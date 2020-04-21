@@ -1,13 +1,11 @@
 import React, { Fragment } from 'react';
 
+import getClassOrClasses from '../../utils/getClassOrClasses';
+
 const Button = (props) => {
   const type = props.type || 'button';
 
-  const classString = Array.isArray(props.classes)
-    ? props.classes.join(' ')
-    : typeof props.classes === 'string'
-    ? props.classes
-    : '';
+  const classString = getClassOrClasses(props.classes);
 
   return (
     <Fragment>

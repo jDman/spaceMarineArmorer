@@ -14,13 +14,7 @@ const ArmorShop = (props) => {
     await props
       .addToCart(event, armor)
       .then((result) => {
-        const updatedFetchedArmors = [...fetchedArmors].map((armor) => {
-          armor.config.value = 0;
-
-          return armor;
-        });
-
-        setFetchedArmors(updatedFetchedArmors);
+        getArmors();
       })
       .catch((err) => console.log(err));
   };
@@ -40,6 +34,7 @@ const ArmorShop = (props) => {
           shield: armor.shield,
           discount: armor.discount,
           cost: armor.cost,
+          stock: armor.stock,
           createdBy: armor.createdBy.userName,
           config: {
             elementType: 'input',
@@ -47,7 +42,7 @@ const ArmorShop = (props) => {
               type: 'number',
               name: 'quantity',
               min: 0,
-              max: 99,
+              max: +armor.stock,
               step: 1,
             },
             value: 0,
@@ -155,11 +150,13 @@ const ArmorShop = (props) => {
                 className={classes.ArmorShopListForm}
               >
                 <Input
-                  elementType={'number'}
+                  elementType={armor.config.elementType}
                   elementConfig={armor.config.elementConfig}
+                  classes={classes.ArmorShopListFormElement}
                   value={armor.config.value}
                   invalid={!armor.config.valid}
                   touched={armor.config.touched}
+                  disabled={armor.stock < 1}
                   hasValidation={armor.config.validation}
                   changed={(event) =>
                     inputChangedHandler(event.target.value, armor.id)
@@ -168,9 +165,16 @@ const ArmorShop = (props) => {
 
                 <Button
                   type="submit"
-                  classes={[classes.ArmorShopAddToCartButton]}
+                  classes={
+                    armor.stock > 0
+                      ? classes.ArmorShopAddToCartButton
+                      : [
+                          classes.ArmorShopAddToCartButton,
+                          classes.ArmorShopAddToCartButtonDisabled,
+                        ]
+                  }
                   disabled={!armor.config.valid}
-                  buttonText="Add to Cart"
+                  buttonText={armor.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                 />
               </form>
             </div>

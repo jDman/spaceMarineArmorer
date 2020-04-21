@@ -29,7 +29,7 @@ const Cart = (props) => {
                 type: 'number',
                 name: 'quantity',
                 min: 0,
-                max: 99,
+                max: +item.armor.stock,
                 step: 1,
               },
               value: item.quantity,
@@ -60,7 +60,7 @@ const Cart = (props) => {
 
   const inputChangedHandler = (newQuantity, itemId) => {
     const updatedUsersCartItems = [...usersCartItems].map((item) => {
-      if (item.id === itemId) {
+      if (item.itemId === itemId) {
         item.config.value = newQuantity;
       }
 
@@ -90,7 +90,7 @@ const Cart = (props) => {
     <section className={classes.Cart}>
       <ul className={classes.CartItemList}>
         {usersCartItems.map((item) => (
-          <li key={item.armor._id} className={classes.CartItem}>
+          <li key={item.itemId} className={classes.CartItem}>
             <div>
               <h3 className={classes.CartItemDetail}>{item.type} Armor Type</h3>
               <p className={classes.CartItemDetail}>
@@ -104,7 +104,7 @@ const Cart = (props) => {
                 touched={item.config.touched}
                 hasValidation={item.config.validation}
                 changed={(event) =>
-                  inputChangedHandler(event.target.value, item.armor._id)
+                  inputChangedHandler(event.target.value, item.itemId)
                 }
               />
               <Button

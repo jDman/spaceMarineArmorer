@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '../button/Button';
+import Input from '../form/input/Input';
 
 import classes from './Pagination.module.css';
 
 const Pagination = (props) => {
+  const [perPageConfig, setPerPageConfig] = useState({
+    elementType: 'select',
+    elementConfig: {
+      selectAttributes: {
+        type: 'select',
+        name: 'quantity',
+      },
+      options: [
+        { value: 5, displayValue: '5' },
+        { value: 10, displayValue: '10' },
+        { value: 20, displayValue: '20' },
+      ],
+    },
+    value: '5',
+    valid: true,
+    touched: false,
+  });
+
+  const inputChangeHandler = (value) => {
+    const updatedPerPageConfig = { ...perPageConfig, value };
+
+    setPerPageConfig(updatedPerPageConfig);
+
+    props.perPageHandler(value);
+  };
+
   return (
     <div className={classes.Pagination}>
       <div className={classes.PaginationButtonContainer}>
@@ -19,11 +46,19 @@ const Pagination = (props) => {
 
       <p>
         Page {props.currentPage} of {props.lastPage} | Items per page{' '}
-        <select onChange={(event) => props.perPageHandler(event.target.value)}>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
+        <div className={classes.PaginationPerPageSelectWrapper}>
+          <Input
+            elementType={perPageConfig.elementType}
+            elementConfig={perPageConfig.elementConfig}
+            classes={classes.ArmorShopListFormElement}
+            value={perPageConfig.value}
+            invalid={!perPageConfig.valid}
+            touched={perPageConfig.touched}
+            hasValidation={perPageConfig.validation}
+            hideLabel={true}
+            changed={(event) => inputChangeHandler(event.target.value)}
+          />
+        </div>
       </p>
 
       <div className={classes.PaginationButtonContainer}>

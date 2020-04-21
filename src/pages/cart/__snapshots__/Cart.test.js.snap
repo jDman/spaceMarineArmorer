@@ -33,7 +33,7 @@ exports[`<Cart /> should render Cart page with cart items array returned from se
           </label>
           <input
             className="InputElement"
-            max={99}
+            max={5}
             min={0}
             name="quantity"
             onChange={[Function]}

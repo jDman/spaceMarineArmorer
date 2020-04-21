@@ -108,8 +108,9 @@ exports[`<ArmorShop /> should render ArmorShop page with results returned from s
               quantity
             </label>
             <input
-              className="InputElement"
-              max={99}
+              className="InputElement ArmorShopListFormElement"
+              disabled={false}
+              max={5}
               min={0}
               name="quantity"
               onChange={[Function]}
@@ -125,6 +126,130 @@ exports[`<ArmorShop /> should render ArmorShop page with results returned from s
             type="submit"
           >
             Add to Cart
+          </button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</section>
+`;
+
+exports[`<ArmorShop /> should render ArmorShop page with results returned from server for armor with no stock 1`] = `
+<section
+  className="ArmorShop"
+>
+  <ul
+    className="ArmorShopList"
+  >
+    <li
+      className="ArmorShopListItem"
+    >
+      <div
+        className="ArmorShopListItemContainer"
+      >
+        <p>
+          <strong>
+            Name
+          </strong>
+          : 
+          test
+        </p>
+        <p>
+          <strong>
+            Type
+          </strong>
+          : 
+          helmet
+        </p>
+        <p>
+          <strong>
+            Description
+          </strong>
+          : 
+          Low tier trash
+        </p>
+        <p>
+          <strong>
+            Company
+          </strong>
+          :
+           
+          starscape systems
+        </p>
+        <p>
+          <strong>
+            Quality
+          </strong>
+          : 
+          low
+        </p>
+        <p>
+          <strong>
+            Protection
+          </strong>
+          : 
+          low
+        </p>
+        <p>
+          <strong>
+            Shield
+          </strong>
+          : 
+          50
+        </p>
+        <p>
+          <strong>
+            Discount
+          </strong>
+          : 
+          30
+        </p>
+        <p>
+          <strong>
+            Cost
+          </strong>
+          : 
+          200
+        </p>
+        <small>
+          Created By: 
+          Freddy
+        </small>
+      </div>
+      <div
+        className="ArmorShopListItemContainer"
+      >
+        <form
+          className="ArmorShopListForm"
+          onSubmit={[Function]}
+        >
+          <div
+            className="Input"
+          >
+            <label
+              className="Label"
+            >
+              quantity
+            </label>
+            <input
+              className="InputElement ArmorShopListFormElement"
+              disabled={true}
+              max={0}
+              min={0}
+              name="quantity"
+              onChange={[Function]}
+              step={1}
+              type="number"
+              value={0}
+            />
+          </div>
+          <button
+            className="ArmorShopAddToCartButton ArmorShopAddToCartButtonDisabled"
+            disabled={true}
+            onClick={[Function]}
+            type="submit"
+          >
+            Out of Stock
           </button>
         </form>
       </div>
@@ -231,8 +356,9 @@ exports[`<ArmorShop /> updates quantity form state on input change 1`] = `
               quantity
             </label>
             <input
-              className="InputElement"
-              max={99}
+              className="InputElement ArmorShopListFormElement"
+              disabled={false}
+              max={5}
               min={0}
               name="quantity"
               onChange={[Function]}

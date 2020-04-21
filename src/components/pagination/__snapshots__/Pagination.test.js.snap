@@ -4,26 +4,67 @@ exports[`<Pagination /> should render with both hasPrevPage and hasNextPage 1`] 
 <div
   className="Pagination"
 >
-  <button
-    className="PaginationButton"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="PaginationButtonContainer"
   >
-    previous
-  </button>
+    <button
+      className="PaginationButton"
+      onClick={[Function]}
+      type="button"
+    >
+      previous
+    </button>
+  </div>
   <p>
     Page 
     2
      of 
     3
+     | Items per page
+     
+    <div
+      className="PaginationPerPageSelectWrapper"
+    >
+      <div
+        className="Input"
+      >
+        <select
+          className="InputElement ArmorShopListFormElement"
+          name="quantity"
+          onChange={[Function]}
+          type="select"
+          value="5"
+        >
+          <option
+            value={5}
+          >
+            5
+          </option>
+          <option
+            value={10}
+          >
+            10
+          </option>
+          <option
+            value={20}
+          >
+            20
+          </option>
+        </select>
+      </div>
+    </div>
   </p>
-  <button
-    className="PaginationButton"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="PaginationButtonContainer"
   >
-    next
-  </button>
+    <button
+      className="PaginationButton"
+      onClick={[Function]}
+      type="button"
+    >
+      next
+    </button>
+  </div>
 </div>
 `;
 
@@ -31,19 +72,59 @@ exports[`<Pagination /> should render with just hasNextPage 1`] = `
 <div
   className="Pagination"
 >
+  <div
+    className="PaginationButtonContainer"
+  />
   <p>
     Page 
     1
      of 
     2
+     | Items per page
+     
+    <div
+      className="PaginationPerPageSelectWrapper"
+    >
+      <div
+        className="Input"
+      >
+        <select
+          className="InputElement ArmorShopListFormElement"
+          name="quantity"
+          onChange={[Function]}
+          type="select"
+          value="5"
+        >
+          <option
+            value={5}
+          >
+            5
+          </option>
+          <option
+            value={10}
+          >
+            10
+          </option>
+          <option
+            value={20}
+          >
+            20
+          </option>
+        </select>
+      </div>
+    </div>
   </p>
-  <button
-    className="PaginationButton"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="PaginationButtonContainer"
   >
-    next
-  </button>
+    <button
+      className="PaginationButton"
+      onClick={[Function]}
+      type="button"
+    >
+      next
+    </button>
+  </div>
 </div>
 `;
 
@@ -51,18 +132,58 @@ exports[`<Pagination /> should render with just hasPrevPage 1`] = `
 <div
   className="Pagination"
 >
-  <button
-    className="PaginationButton"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="PaginationButtonContainer"
   >
-    previous
-  </button>
+    <button
+      className="PaginationButton"
+      onClick={[Function]}
+      type="button"
+    >
+      previous
+    </button>
+  </div>
   <p>
     Page 
     2
      of 
     2
+     | Items per page
+     
+    <div
+      className="PaginationPerPageSelectWrapper"
+    >
+      <div
+        className="Input"
+      >
+        <select
+          className="InputElement ArmorShopListFormElement"
+          name="quantity"
+          onChange={[Function]}
+          type="select"
+          value="5"
+        >
+          <option
+            value={5}
+          >
+            5
+          </option>
+          <option
+            value={10}
+          >
+            10
+          </option>
+          <option
+            value={20}
+          >
+            20
+          </option>
+        </select>
+      </div>
+    </div>
   </p>
+  <div
+    className="PaginationButtonContainer"
+  />
 </div>
 `;

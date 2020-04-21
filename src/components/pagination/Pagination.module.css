@@ -9,6 +9,13 @@
 }
 
 .PaginationButton {
+  padding-top: 0.4rem;
   width: 100%;
+  background-color: #04db6d;
   color: #000000;
+}
+
+.PaginationPerPageSelectWrapper {
+  display: inline-block;
+  width: 3rem;
 }
