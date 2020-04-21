@@ -4,6 +4,9 @@ exports[`<ArmorShop /> should render ArmorShop page with empty armor array retur
 <section
   className="ArmorShop"
 >
+  <h1>
+    Shop for Armor
+  </h1>
   <ul
     className="ArmorShopList"
   />
@@ -14,6 +17,9 @@ exports[`<ArmorShop /> should render ArmorShop page with results returned from s
 <section
   className="ArmorShop"
 >
+  <h1>
+    Shop for Armor
+  </h1>
   <ul
     className="ArmorShopList"
   >
@@ -138,6 +144,9 @@ exports[`<ArmorShop /> should render ArmorShop page with results returned from s
 <section
   className="ArmorShop"
 >
+  <h1>
+    Shop for Armor
+  </h1>
   <ul
     className="ArmorShopList"
   >
@@ -262,6 +271,9 @@ exports[`<ArmorShop /> updates quantity form state on input change 1`] = `
 <section
   className="ArmorShop"
 >
+  <h1>
+    Shop for Armor
+  </h1>
   <ul
     className="ArmorShopList"
   >

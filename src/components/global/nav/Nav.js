@@ -56,17 +56,19 @@ function Nav(props) {
 
         {props.isAuth && (
           <Fragment>
-            <li className={classes.NavigationListItem}>
-              <NavLink
-                to="/admin"
-                className={classes.NavigationLink}
-                exact
-                strict
-                activeStyle={activeLingStyles}
-              >
-                Admin
-              </NavLink>
-            </li>
+            {props.isAdmin ? (
+              <li className={classes.NavigationListItem}>
+                <NavLink
+                  to="/admin"
+                  className={classes.NavigationLink}
+                  exact
+                  strict
+                  activeStyle={activeLingStyles}
+                >
+                  Admin
+                </NavLink>
+              </li>
+            ) : null}
 
             <li className={classes.NavigationListItem}>
               <NavLink

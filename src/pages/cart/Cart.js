@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Button from '../../components/button/Button';
 import Input from '../../components/form/input/Input';
+import PageTitle from '../../components/page-title/PageTitle';
 
 import classes from './Cart.module.css';
 
@@ -88,6 +89,7 @@ const Cart = (props) => {
 
   return (
     <section className={classes.Cart}>
+      <PageTitle title="Shopping Cart" />
       <ul className={classes.CartItemList}>
         {usersCartItems.map((item) => (
           <li key={item.itemId} className={classes.CartItem}>

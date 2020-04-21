@@ -14,12 +14,12 @@ const Pagination = (props) => {
         name: 'quantity',
       },
       options: [
-        { value: 5, displayValue: '5' },
         { value: 10, displayValue: '10' },
         { value: 20, displayValue: '20' },
+        { value: 50, displayValue: '50' },
       ],
     },
-    value: '5',
+    value: '10',
     valid: true,
     touched: false,
   });
@@ -44,7 +44,7 @@ const Pagination = (props) => {
         ) : null}
       </div>
 
-      <p>
+      <div>
         Page {props.currentPage} of {props.lastPage} | Items per page{' '}
         <div className={classes.PaginationPerPageSelectWrapper}>
           <Input
@@ -59,7 +59,7 @@ const Pagination = (props) => {
             changed={(event) => inputChangeHandler(event.target.value)}
           />
         </div>
-      </p>
+      </div>
 
       <div className={classes.PaginationButtonContainer}>
         {props.hasNextPage ? (

@@ -28,18 +28,6 @@ exports[`<Nav /> renders Nav component with isAuth props 1`] = `
       <a
         aria-current={null}
         className="NavigationLink"
-        href="/admin"
-        onClick={[Function]}
-      >
-        Admin
-      </a>
-    </li>
-    <li
-      className="NavigationListItem"
-    >
-      <a
-        aria-current={null}
-        className="NavigationLink"
         href="/shop"
         onClick={[Function]}
       >

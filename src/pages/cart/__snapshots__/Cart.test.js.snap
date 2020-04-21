@@ -4,6 +4,9 @@ exports[`<Cart /> should render Cart page with cart items array returned from se
 <section
   className="Cart"
 >
+  <h1>
+    Shopping Cart
+  </h1>
   <ul
     className="CartItemList"
   >
@@ -72,6 +75,9 @@ exports[`<Cart /> should render Cart page with empty cart items array returned f
 <section
   className="Cart"
 >
+  <h1>
+    Shopping Cart
+  </h1>
   <ul
     className="CartItemList"
   />

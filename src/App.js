@@ -12,6 +12,7 @@ import Signup from './pages/auth/Signup';
 import Login from './pages/auth/Login';
 import PreviousOrders from './components/previous-orders/PreviousOrders';
 import Pagination from './components/pagination/Pagination';
+import PageTitle from './components/page-title/PageTitle';
 
 import classes from './App.module.css';
 
@@ -28,7 +29,8 @@ function App() {
   const [generatedToken, setGeneratedToken] = useState();
   const [showPreviousOrders, setShowPreviousOrders] = useState(false);
   const [currentOrdersPage, setCurrentOrdersPage] = useState(1);
-  const [chosenOrdersPerPage, setChosenOrdersPerPage] = useState(5);
+  const [chosenOrdersPerPage, setChosenOrdersPerPage] = useState(10);
+  const [userIsAdmin, setUserIsAdmin] = useState(false);
 
   const getPreviousOrders = (params) => {
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + generatedToken;
@@ -143,7 +145,7 @@ function App() {
       })
       .then((result) => {
         const remainingMilliseconds = 60 * 60 * 1000;
-        const token = result.data.token;
+        const { token, isAdmin } = result.data;
 
         const expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
@@ -154,6 +156,7 @@ function App() {
         sessionStorage.setItem('userId', result.data.userId);
 
         setAuth(true);
+        setUserIsAdmin(isAdmin);
         setGeneratedToken(token);
 
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
@@ -241,18 +244,20 @@ function App() {
     <Fragment>
       <div className={classes.App}>
         <Header />
-        <Nav isAuth={isAuth} logout={logoutHandler} />
+        <Nav isAuth={isAuth} isAdmin={userIsAdmin} logout={logoutHandler} />
       </div>
 
       {isLoading ? <h1>Loading ...</h1> : null}
 
       <Switch>
-        <Route
-          path="/admin"
-          exact
-          strict
-          render={(props) => <ArmorAdmin />}
-        ></Route>
+        {userIsAdmin ? (
+          <Route
+            path="/admin"
+            exact
+            strict
+            render={(props) => <ArmorAdmin />}
+          ></Route>
+        ) : null}
 
         <Route
           path="/cart"
@@ -311,7 +316,7 @@ function App() {
             render={() => {
               return (
                 <section className={classes.AppHomeSection}>
-                  <h1>Welome to your local Space Marine Armory</h1>
+                  <PageTitle title="Welome to your friendly Space Marine Armory" />
 
                   <Fragment>
                     <PreviousOrders

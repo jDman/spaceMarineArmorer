@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Input from '../../components/form/input/Input';
 import Button from '../../components/button/Button';
+import PageTitle from '../../components/page-title/PageTitle';
 
 import classes from './ArmorAdmin.module.css';
 
@@ -282,7 +283,8 @@ class ArmorAdmin extends Component {
 
     return (
       <section className={classes.ArmorAdmin}>
-        <h1>Add an Armor</h1>
+        <PageTitle title="Add an Armor" />
+
         <form onSubmit={(event) => this.addArmor(event)}>
           {armorDetailsFormElements.map((formElement) => (
             <Input

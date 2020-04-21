@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Input from '../../components/form/input/Input';
 import Button from '../../components/button/Button';
+import PageTitle from '../../components/page-title/PageTitle';
 
 import classes from './ArmorShop.module.css';
 
@@ -107,6 +108,8 @@ const ArmorShop = (props) => {
 
   return (
     <section className={classes.ArmorShop}>
+      <PageTitle title="Shop for Armor" />
+
       <ul className={classes.ArmorShopList}>
         {fetchedArmors.map((armor) => (
           <li key={armor.id} className={classes.ArmorShopListItem}>
