@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ArmorShopItem /> should render with props passed in 1`] = `
+<li
+  className="ArmorShopListItem"
+>
+  <div
+    className="ArmorShopListItemContainer"
+  >
+    <p>
+      <strong>
+        Name
+      </strong>
+      : 
+      Legatron
+    </p>
+    <p>
+      <strong>
+        Type
+      </strong>
+      : 
+      leg
+    </p>
+    <p>
+      <strong>
+        Description
+      </strong>
+      : 
+      Leg Armor that is basic
+    </p>
+    <p>
+      <strong>
+        Company
+      </strong>
+      : 
+      orian labs
+    </p>
+    <p>
+      <strong>
+        Quality
+      </strong>
+      : 
+      low
+    </p>
+    <p>
+      <strong>
+        Protection
+      </strong>
+      : 
+      low
+    </p>
+    <p>
+      <strong>
+        Shield
+      </strong>
+      : 
+      0
+    </p>
+    <p>
+      <strong>
+        Discount
+      </strong>
+      : 
+      0
+    </p>
+    <p>
+      <strong>
+        Cost
+      </strong>
+      : 
+      100
+    </p>
+    <small>
+      Created By: 
+      Freddy
+    </small>
+  </div>
+  <div
+    className="ArmorShopListItemContainer"
+  >
+    <form
+      className="ArmorShopListForm"
+      onSubmit={[Function]}
+    >
+      <div
+        className="Input"
+      >
+        <label
+          className="Label"
+        >
+          quantity
+        </label>
+        <input
+          className="InputElement ArmorShopListFormElement"
+          disabled={true}
+          max={0}
+          min={0}
+          name="quantity"
+          onChange={[Function]}
+          step={1}
+          type="number"
+          value={0}
+        />
+      </div>
+      <button
+        className="ArmorShopAddToCartButton ArmorShopAddToCartButtonDisabled"
+        disabled={true}
+        onClick={[Function]}
+        type="submit"
+      >
+        Out of Stock
+      </button>
+    </form>
+  </div>
+</li>
+`;

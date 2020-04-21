@@ -153,6 +153,7 @@ function App() {
 
         sessionStorage.setItem('expiryDate', expiryDate.toISOString());
         sessionStorage.setItem('token', token);
+        sessionStorage.setItem('isAdmin', isAdmin);
         sessionStorage.setItem('userId', result.data.userId);
 
         setAuth(true);
@@ -178,6 +179,7 @@ function App() {
 
     sessionStorage.removeItem('expiryDate');
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('isAdmin');
     sessionStorage.removeItem('userId');
 
     history.replace('/login');
@@ -221,6 +223,7 @@ function App() {
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
+    const isAdmin = sessionStorage.getItem('isAdmin');
     const expiryDate = sessionStorage.getItem('expiryDate');
     const expired = new Date(expiryDate) <= new Date();
 
@@ -230,6 +233,7 @@ function App() {
     }
 
     setAuth(true);
+    setUserIsAdmin(isAdmin);
     setGeneratedToken(token);
   }, [logoutHandler]);
 

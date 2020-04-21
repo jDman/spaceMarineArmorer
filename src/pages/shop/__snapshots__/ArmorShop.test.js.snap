@@ -54,8 +54,7 @@ exports[`<ArmorShop /> should render ArmorShop page with results returned from s
           <strong>
             Company
           </strong>
-          :
-           
+          : 
           starscape systems
         </p>
         <p>
@@ -181,8 +180,7 @@ exports[`<ArmorShop /> should render ArmorShop page with results returned from s
           <strong>
             Company
           </strong>
-          :
-           
+          : 
           starscape systems
         </p>
         <p>
@@ -308,8 +306,7 @@ exports[`<ArmorShop /> updates quantity form state on input change 1`] = `
           <strong>
             Company
           </strong>
-          :
-           
+          : 
           starscape systems
         </p>
         <p>
