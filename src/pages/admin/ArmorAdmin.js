@@ -5,6 +5,12 @@ import Input from '../../components/form/input/Input';
 import Button from '../../components/button/Button';
 import PageTitle from '../../components/page-title/PageTitle';
 
+import maxLengthCheck from '../../utils/maxLengthCheck';
+import minLengthCheck from '../../utils/minLengthCheck';
+import maxNumberCheck from '../../utils/maxNumberCheck';
+import minNumberCheck from '../../utils/minNumberCheck';
+import requiredCheck from '../../utils/requiredCheck';
+
 import classes from './ArmorAdmin.module.css';
 
 class ArmorAdmin extends Component {
@@ -20,9 +26,7 @@ class ArmorAdmin extends Component {
           required: true,
         },
         value: '',
-        validation: {
-          required: true,
-        },
+        validators: [requiredCheck(null)],
         valid: false,
         touched: false,
       },
@@ -43,7 +47,7 @@ class ArmorAdmin extends Component {
         },
         value: 'helmet',
         valid: true,
-        validation: { required: true },
+        validators: [],
         touched: false,
       },
       description: {
@@ -56,11 +60,11 @@ class ArmorAdmin extends Component {
           maxLength: 2000,
         },
         value: '',
-        validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 2000,
-        },
+        validators: [
+          requiredCheck(null),
+          minLengthCheck(5),
+          maxLengthCheck(2000),
+        ],
         valid: false,
         touched: false,
       },
@@ -80,7 +84,7 @@ class ArmorAdmin extends Component {
         },
         value: 'starscape_systems',
         valid: true,
-        validation: { required: true },
+        validators: [],
         touched: false,
       },
       stock: {
@@ -94,7 +98,7 @@ class ArmorAdmin extends Component {
         },
         value: 0,
         valid: true,
-        validation: {},
+        validators: [],
         touched: false,
       },
       discount: {
@@ -108,7 +112,7 @@ class ArmorAdmin extends Component {
         },
         value: 0,
         valid: true,
-        validation: {},
+        validators: [],
         touched: false,
       },
 
@@ -123,11 +127,11 @@ class ArmorAdmin extends Component {
           step: 100,
         },
         value: 0,
-        validation: {
-          required: true,
-          min: 0,
-          max: 10000,
-        },
+        validators: [
+          requiredCheck('0'),
+          minNumberCheck(0),
+          maxNumberCheck(10000),
+        ],
         valid: false,
         touched: false,
       },
@@ -142,10 +146,9 @@ class ArmorAdmin extends Component {
         },
         value: 0,
         valid: true,
-        validation: {},
+        validators: [],
         touched: false,
       },
-
       protection: {
         elementType: 'select',
         elementConfig: {
@@ -162,7 +165,7 @@ class ArmorAdmin extends Component {
         },
         value: 'high',
         valid: true,
-        validation: { required: true },
+        validators: [],
         touched: false,
       },
       quality: {
@@ -181,7 +184,7 @@ class ArmorAdmin extends Component {
         },
         value: 'high',
         valid: true,
-        validation: { required: true },
+        validators: [],
         touched: false,
       },
     },
@@ -198,8 +201,6 @@ class ArmorAdmin extends Component {
       armorDetailsFormData[key] = this.state.armorDetailsForm[key].value;
     }
 
-    console.log(armorDetailsFormData);
-
     axios
       .post('http://localhost:4000/admin/armor/add', {
         ...armorDetailsFormData,
@@ -213,60 +214,35 @@ class ArmorAdmin extends Component {
       });
   }
 
-  checkValidity(value, rules) {
-    let isValid = true;
+  inputChangedHandler(value, identifier) {
+    this.setState((prevState) => {
+      let isValid = true;
 
-    const trimedValue = value.trim();
-
-    if (rules.required) {
-      isValid = trimedValue !== '' && trimedValue !== '0' && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    return isValid;
-  }
-
-  inputChangedHandler(event, identifier) {
-    const updatedArmorDetailsForm = {
-      ...this.state.armorDetailsForm,
-    };
-
-    const updatedArmorDetail = { ...updatedArmorDetailsForm[identifier] };
-
-    updatedArmorDetail.value = event.target.value;
-    updatedArmorDetail.touched = true;
-
-    if (updatedArmorDetail.validation) {
-      updatedArmorDetail.valid = this.checkValidity(
-        updatedArmorDetail.value,
-        updatedArmorDetail.validation
-      );
-    }
-
-    updatedArmorDetailsForm[identifier] = updatedArmorDetail;
-
-    let formIsValid = true;
-
-    for (let key in updatedArmorDetailsForm) {
-      const isDetailValid = updatedArmorDetailsForm[key].valid;
-
-      if (isDetailValid !== null && isDetailValid !== undefined) {
-        formIsValid = isDetailValid && formIsValid;
-      } else {
-        formIsValid = true && formIsValid;
+      for (const validator of prevState.armorDetailsForm[identifier]
+        .validators) {
+        isValid = isValid && validator(value);
       }
-    }
 
-    this.setState({
-      armorDetailsForm: updatedArmorDetailsForm,
-      armorDetailsFormIsValid: formIsValid,
+      const updatedForm = {
+        ...prevState.armorDetailsForm,
+        [identifier]: {
+          ...prevState.armorDetailsForm[identifier],
+          touched: true,
+          valid: isValid,
+          value: value,
+        },
+      };
+
+      let formIsValid = true;
+
+      for (const inputName in updatedForm) {
+        formIsValid = formIsValid && updatedForm[inputName].valid;
+      }
+
+      return {
+        armorDetailsForm: updatedForm,
+        armorDetailsFormIsValid: formIsValid,
+      };
     });
   }
 
@@ -294,9 +270,9 @@ class ArmorAdmin extends Component {
               value={formElement.config.value}
               invalid={!formElement.config.valid}
               touched={formElement.config.touched}
-              hasValidation={formElement.config.validation}
+              hasValidation={formElement.config.validators.length}
               changed={(event) =>
-                this.inputChangedHandler(event, formElement.id)
+                this.inputChangedHandler(event.target.value, formElement.id)
               }
             />
           ))}

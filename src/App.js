@@ -285,16 +285,14 @@ function App() {
           exact
           strict
           render={() => {
-            if (generatedToken) {
-              return (
-                <ArmorShop
-                  addToCart={addToCartHandler}
-                  token={generatedToken}
-                  loading={loadingHandler}
-                  isLoading={isLoading}
-                />
-              );
-            }
+            return (
+              <ArmorShop
+                addToCart={addToCartHandler}
+                token={generatedToken}
+                loading={loadingHandler}
+                isLoading={isLoading}
+              />
+            );
           }}
         ></Route>
 

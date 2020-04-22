@@ -4,6 +4,7 @@ import Auth from './Auth';
 import Input from '../../components/form/input/Input';
 import Button from '../../components/button/Button';
 
+import emailCheck from '../../utils/emailCheck';
 import requiredCheck from '../../utils/requiredCheck';
 import minLengthCheck from '../../utils/minLengthCheck';
 import classes from './Signup.module.css';
@@ -36,7 +37,7 @@ class Signup extends Component {
         },
         value: '',
         valid: false,
-        validators: [requiredCheck(null)],
+        validators: [requiredCheck(null), emailCheck],
         touched: false,
       },
       password: {
@@ -49,7 +50,7 @@ class Signup extends Component {
         },
         value: '',
         valid: false,
-        validators: [requiredCheck(null)],
+        validators: [requiredCheck(null), minLengthCheck(8)],
         touched: false,
       },
     },
@@ -84,26 +85,6 @@ class Signup extends Component {
         signupFormIsValid: formIsValid,
       };
     });
-  }
-
-  checkValidity(value, rules) {
-    let isValid = true;
-
-    const trimedValue = value.trim();
-
-    if (rules.required) {
-      isValid = trimedValue !== '' && trimedValue !== '0' && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    return isValid;
   }
 
   render() {
