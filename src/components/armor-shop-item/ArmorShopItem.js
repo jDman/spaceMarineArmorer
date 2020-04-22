@@ -7,6 +7,7 @@ import classes from './ArmorShopItem.module.css';
 
 const ArmorShopItem = (props) => {
   const armor = props.armor;
+
   return (
     <li className={classes.ArmorShopListItem}>
       <div className={classes.ArmorShopListItemContainer}>
@@ -55,7 +56,7 @@ const ArmorShopItem = (props) => {
             invalid={!armor.config.valid}
             touched={armor.config.touched}
             disabled={armor.stock < 1}
-            hasValidation={armor.config.validation}
+            hasValidation={armor.config.validators.length}
             changed={(event) =>
               props.inputChangedHandler(event.target.value, armor.id)
             }

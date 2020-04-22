@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import PageTitle from '../../components/page-title/PageTitle';
 import ArmorShopItem from '../../components/armor-shop-item/ArmorShopItem';
+
+import minNumberCheck from '../../utils/minNumberCheck';
+
 import classes from './ArmorShop.module.css';
 
 const ArmorShop = (props) => {
@@ -46,9 +49,7 @@ const ArmorShop = (props) => {
             },
             value: 0,
             valid: false,
-            validation: {
-              min: 1,
-            },
+            validators: [minNumberCheck(1)],
             touched: false,
           },
         }));
@@ -60,42 +61,34 @@ const ArmorShop = (props) => {
       });
   }, []);
 
-  const checkValidity = (value, rules) => {
+  const inputChangedHandler = (value, armorId) => {
     let isValid = true;
 
-    const trimedValue = +value.trim();
+    const updatedArmors = [...fetchedArmors];
 
-    if (rules.min) {
-      isValid = trimedValue > 0;
+    const armorIndex = updatedArmors.findIndex((armor) => armor.id === armorId);
+
+    for (const validator of updatedArmors[armorIndex].config.validators) {
+      isValid = isValid && validator(value);
     }
 
-    return isValid;
-  };
+    const oldConfig = updatedArmors[armorIndex].config;
 
-  const inputChangedHandler = (newQuantity, armorId) => {
-    const armors = [...fetchedArmors];
+    const updatedArmorConfig = {
+      ...oldConfig,
+      touched: true,
+      valid: isValid,
+      value: value,
+    };
 
-    const updatedArmorDetail = armors.find((armor) => armorId === armor.id);
+    const updatedArmor = {
+      ...updatedArmors[armorIndex],
+      config: updatedArmorConfig,
+    };
 
-    updatedArmorDetail.config.value = newQuantity;
-    updatedArmorDetail.config.touched = true;
+    updatedArmors[armorIndex] = updatedArmor;
 
-    updatedArmorDetail.config.valid = checkValidity(
-      updatedArmorDetail.config.value,
-      updatedArmorDetail.config.validation
-    );
-
-    armors.map((armor) => {
-      if (armor.id === armorId) {
-        return {
-          ...updatedArmorDetail,
-        };
-      }
-
-      return armor;
-    });
-
-    setFetchedArmors(armors);
+    setFetchedArmors(updatedArmors);
   };
 
   useEffect(() => {

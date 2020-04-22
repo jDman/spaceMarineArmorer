@@ -207,7 +207,7 @@ class ArmorAdmin extends Component {
         createdBy: { userId: '5e70dfb438cee83fd9e004fd', userName: 'Freddy' },
       })
       .then((result) => {
-        console.log(result);
+        return result;
       })
       .catch((err) => {
         console.log(err);
