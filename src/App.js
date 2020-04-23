@@ -1,6 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-import axios from 'axios';
 import { withRouter, useHistory } from 'react-router-dom';
 
 import Header from './components/global/header/Header';
@@ -14,13 +13,15 @@ import PreviousOrders from './components/previous-orders/PreviousOrders';
 import Pagination from './components/pagination/Pagination';
 import PageTitle from './components/page-title/PageTitle';
 
+import useHttp from './hooks/http';
+
 import classes from './App.module.css';
 
 function App() {
   let history = useHistory();
 
   const [isAuth, setAuth] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [previousOrders, setPreviousOrders] = useState([]);
   const [hasNextOrdersPage, setHasNextOrdersPage] = useState(false);
   const [hasPreviousOrdersPage, setHasPreviousOrdersPage] = useState(false);
@@ -32,12 +33,14 @@ function App() {
   const [chosenOrdersPerPage, setChosenOrdersPerPage] = useState(10);
   const [userIsAdmin, setUserIsAdmin] = useState(false);
 
-  const getPreviousOrders = (params) => {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + generatedToken;
-    axios.defaults.headers.common['Content-Type'] = 'application/json';
+  const [isLoading, error, responseData, makeRequest] = useHttp();
 
-    return axios
-      .get('http://localhost:4000/shop/orders', { params })
+  const getPreviousOrders = (params) => {
+    const url = new URL('http://localhost:4000/shop/orders');
+
+    url.search = new URLSearchParams(params).toString();
+
+    return makeRequest(url, 'GET')
       .then((result) => {
         const {
           orders,
@@ -45,7 +48,7 @@ function App() {
           hasNextPage,
           lastPage,
           totalItems,
-        } = result.data;
+        } = result;
 
         setPreviousOrders(orders);
         setHasPreviousOrdersPage(hasPrevPage);
@@ -107,11 +110,15 @@ function App() {
     const armorId = armor.id;
     const quantity = armor.config.value;
 
-    return axios
-      .put('http://localhost:4000/shop/armor/cart', {
+    return makeRequest(
+      'http://localhost:4000/shop/armor/cart',
+
+      'PUT',
+      {
         armorId,
         quantity,
-      })
+      }
+    )
       .then((result) => {
         return result;
       })
@@ -121,31 +128,31 @@ function App() {
   };
 
   const deleteCartItemHandler = (itemId) => {
-    return axios
-      .delete(`http://localhost:4000/shop/armor/cart/item`, {
-        params: { itemId },
-      })
+    const url = new URL(`http://localhost:4000/shop/armor/cart/item`);
+
+    const params = { itemId };
+
+    url.search = new URLSearchParams(params).toString();
+
+    return makeRequest(url, 'DELETE')
       .then((result) => result.message)
       .catch((err) => console.log(err));
   };
 
   const loadingHandler = (loadingValue) => {
-    setIsLoading(loadingValue);
+    // setIsLoading(loadingValue);
   };
 
   const loginHandler = (event, { loading, loginFormIsValid, loginForm }) => {
     event.preventDefault();
 
-    setIsLoading(true);
-
-    axios
-      .post('http://localhost:4000/auth/login', {
-        email: loginForm.email.value,
-        password: loginForm.password.value,
-      })
+    makeRequest('http://localhost:4000/auth/login', 'POST', {
+      email: loginForm.email.value,
+      password: loginForm.password.value,
+    })
       .then((result) => {
         const remainingMilliseconds = 60 * 60 * 1000;
-        const { token, isAdmin } = result.data;
+        const { token, isAdmin, userId } = result;
 
         const expiryDate = new Date(
           new Date().getTime() + remainingMilliseconds
@@ -154,23 +161,17 @@ function App() {
         sessionStorage.setItem('expiryDate', expiryDate.toISOString());
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('isAdmin', isAdmin);
-        sessionStorage.setItem('userId', result.data.userId);
+        sessionStorage.setItem('userId', userId);
 
         setAuth(true);
         setUserIsAdmin(isAdmin);
         setGeneratedToken(token);
-
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-        axios.defaults.headers.common['Content-Type'] = 'application/json';
       })
       .then(() => {
         history.replace('/');
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   };
 
@@ -188,30 +189,23 @@ function App() {
   const signupHandler = (event, { loading, signupFormIsValid, signupForm }) => {
     event.preventDefault();
 
-    loadingHandler(true);
-
-    axios
-      .post('http://localhost:4000/auth/signup', {
-        userName: signupForm.userName.value,
-        email: signupForm.email.value,
-        password: signupForm.password.value,
-      })
+    makeRequest('http://localhost:4000/auth/signup', 'POST', {
+      userName: signupForm.userName.value,
+      email: signupForm.email.value,
+      password: signupForm.password.value,
+    })
       .then((result) => {
         history.replace('/login');
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
-        loadingHandler(false);
       });
   };
 
   const orderItemsHandler = (items) => {
-    return axios
-      .post(`http://localhost:4000/shop/armor/order`, {
-        items,
-      })
+    return makeRequest(`http://localhost:4000/shop/armor/order`, 'POST', {
+      items,
+    })
       .then((result) => {
         getPreviousOrders({
           page: currentOrdersPage,
@@ -271,7 +265,6 @@ function App() {
             if (generatedToken) {
               return (
                 <Cart
-                  token={generatedToken}
                   deleteCartItem={deleteCartItemHandler}
                   orderItems={orderItemsHandler}
                 />

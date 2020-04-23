@@ -1,23 +1,23 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
 
 import Button from '../../components/button/Button';
 import Input from '../../components/form/input/Input';
 import PageTitle from '../../components/page-title/PageTitle';
 
+import useHttp from '../../hooks/http';
+
 import classes from './Cart.module.css';
 
 const Cart = (props) => {
-  const token = props.token;
   const [usersCartItems, setUsersCartItems] = useState([]);
   const [usersCartItemsNumber, setUsersCartItemsNumber] = useState(0);
   const [canOrder, setCanOrder] = useState(false);
+  const [isLoading, error, responseData, makeRequest] = useHttp();
 
   const getCart = useCallback(() => {
-    return axios
-      .get('http://localhost:4000/shop/armor/cart/items')
+    return makeRequest('http://localhost:4000/shop/armor/cart/items', 'GET')
       .then((result) => {
-        const inputConfigCartItems = result.data.items.map((item) => {
+        const inputConfigCartItems = result.items.map((item) => {
           return {
             armor: item.armor,
             itemId: item._id,
@@ -48,7 +48,7 @@ const Cart = (props) => {
         inputConfigCartItemsLength ? setCanOrder(true) : setCanOrder(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [makeRequest]);
 
   const deleteCartItem = async (itemId) => {
     await props
@@ -81,11 +81,8 @@ const Cart = (props) => {
   };
 
   useEffect(() => {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-    axios.defaults.headers.common['Content-Type'] = 'application/json';
-
     getCart();
-  }, [getCart, token]);
+  }, [getCart]);
 
   return (
     <section className={classes.Cart}>

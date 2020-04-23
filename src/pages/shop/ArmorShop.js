@@ -1,16 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
 
 import PageTitle from '../../components/page-title/PageTitle';
 import ArmorShopItem from '../../components/armor-shop-item/ArmorShopItem';
 
 import minNumberCheck from '../../utils/minNumberCheck';
 
+import useHttp from '../../hooks/http';
+
 import classes from './ArmorShop.module.css';
 
 const ArmorShop = (props) => {
   const { token } = props;
   const [fetchedArmors, setFetchedArmors] = useState([]);
+  const [isLoading, error, responseData, makeRequest] = useHttp();
 
   const addToCart = async (event, armor) => {
     await props
@@ -22,10 +24,9 @@ const ArmorShop = (props) => {
   };
 
   const getArmors = useCallback(() => {
-    return axios
-      .get('http://localhost:4000/shop/armors')
+    makeRequest('http://localhost:4000/shop/armors', 'GET')
       .then((result) => {
-        const armors = result.data.armors.map((armor) => ({
+        const armors = result.armors.map((armor) => ({
           id: armor._id,
           name: armor.name,
           type: armor.type,
@@ -59,7 +60,7 @@ const ArmorShop = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [makeRequest]);
 
   const inputChangedHandler = (value, armorId) => {
     let isValid = true;
@@ -92,8 +93,6 @@ const ArmorShop = (props) => {
   };
 
   useEffect(() => {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-    axios.defaults.headers.common['Content-Type'] = 'application/json';
     getArmors();
   }, [getArmors, token]);
 
