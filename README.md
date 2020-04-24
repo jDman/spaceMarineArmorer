@@ -1,3 +1,5 @@
+An example react application meant to be run locally with the [spaceSoldierArmorer-backend](https://github.com/jDman/spaceSoldierArmorer-backend). Both applications should be running to see this app working.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
