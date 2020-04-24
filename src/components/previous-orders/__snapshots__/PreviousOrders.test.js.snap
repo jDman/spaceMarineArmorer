@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PreviousOrders /> should render component and display list of previous orders 1`] = `
+exports[`<PreviousOrders /> should render component and display button with View previous orders text 1`] = `
 <div
   className="PreviousOrders"
 >
@@ -11,5 +11,70 @@ exports[`<PreviousOrders /> should render component and display list of previous
   >
     View previous orders
   </button>
+</div>
+`;
+
+exports[`<PreviousOrders /> should render component and display list of orders when showPreviousOrders prop true 1`] = `
+<div
+  className="PreviousOrders"
+>
+  <button
+    className="PreviousOrdersButton"
+    onClick={[Function]}
+    type="button"
+  >
+    Hide previous orders
+  </button>
+  <h2
+    className="PreviousOrdersHeading"
+  >
+    Previous orders
+  </h2>
+  <ul
+    className="PreviousOrders"
+  >
+    <div>
+      <div
+        className="PreviousOrdersListItemHeading"
+      >
+        <h3>
+          Order ID
+        </h3>
+        <span>
+          5e98106449355843575cf0c1
+        </span>
+      </div>
+      <li
+        className="PreviousOrdersListItem PreviousOrdersListItemBody"
+      >
+        <h4 />
+        <p>
+          Type 
+          body
+        </p>
+        <p>
+          Cost 
+          <small>
+            200
+          </small>
+        </p>
+      </li>
+      <li
+        className="PreviousOrdersListItem PreviousOrdersListItemHelmet"
+      >
+        <h4 />
+        <p>
+          Type 
+          helmet
+        </p>
+        <p>
+          Cost 
+          <small>
+            200
+          </small>
+        </p>
+      </li>
+    </div>
+  </ul>
 </div>
 `;

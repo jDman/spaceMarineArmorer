@@ -13,6 +13,7 @@
   width: 100%;
   background-color: #04db6d;
   color: #000000;
+  cursor: pointer;
 }
 
 .PaginationPerPageSelectWrapper {

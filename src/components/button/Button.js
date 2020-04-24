@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import getClassOrClasses from '../../utils/getClassOrClasses';
 
@@ -8,18 +8,16 @@ const Button = (props) => {
   const classString = getClassOrClasses(props.classes);
 
   return (
-    <Fragment>
-      <button
-        type={type}
-        className={classString}
-        disabled={props.disabled || props.loading}
-        onClick={(event) =>
-          props.clickHandler ? props.clickHandler(event) : () => {}
-        }
-      >
-        {props.buttonText}
-      </button>
-    </Fragment>
+    <button
+      type={type}
+      className={classString}
+      disabled={props.disabled || props.loading}
+      onClick={(event) =>
+        props.clickHandler ? props.clickHandler(event) : () => {}
+      }
+    >
+      {props.buttonText}
+    </button>
   );
 };
 
