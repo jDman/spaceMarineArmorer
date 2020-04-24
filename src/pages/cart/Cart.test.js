@@ -1,23 +1,32 @@
 import React from 'react';
 import renderer, { act } from 'react-test-renderer';
-import axios from 'axios';
 
 import Cart from './Cart';
 
-jest.mock('axios');
-
 describe('<Cart />', () => {
+  beforeEach(() => {
+    global.fetch = jest.fn().mockImplementation(() => mockFetchPromise);
+  });
+
+  afterEach(() => {
+    global.fetch.mockClear();
+    delete global.fetch;
+  });
+
   it('should render Cart page with empty cart items array returned from server', async () => {
     const result = {
       data: {
-        items: []
-      }
+        items: [],
+      },
+      json: function () {
+        return this.data;
+      },
     };
 
     const component = renderer.create(<Cart />);
 
     await act(async () => {
-      await axios.get.mockImplementation(() => Promise.resolve(result));
+      await fetch.mockReturnValue(Promise.resolve(result));
     });
 
     let tree = component.toJSON();
@@ -33,7 +42,7 @@ describe('<Cart />', () => {
             armor: {
               createdBy: {
                 userId: '5e70dfb438cee83fd9e004fd',
-                userName: 'Freddy'
+                userName: 'Freddy',
               },
               stock: 5,
               shield: 50,
@@ -47,18 +56,21 @@ describe('<Cart />', () => {
               company: 'starscape_systems',
               createdAt: '2020-04-13T07:58:35.164Z',
               updatedAt: '2020-04-13T07:58:35.164Z',
-              __v: 0
+              __v: 0,
             },
-            quantity: 3
-          }
-        ]
-      }
+            quantity: 3,
+          },
+        ],
+      },
+      json: function () {
+        return this.data;
+      },
     };
 
     const component = renderer.create(<Cart />);
 
     await act(async () => {
-      await axios.get.mockImplementation(() => Promise.resolve(result));
+      await fetch.mockReturnValue(Promise.resolve(result));
     });
 
     let tree = component.toJSON();
